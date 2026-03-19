@@ -1,0 +1,727 @@
+{
+  "$description": "Blinqx component specifications with semantic metadata. Each component maps directly to a Figma section in the Style Guide.",
+  "$meta": {
+    "figmaFile": "F5hNn1cAwIeKGJgEFJV64q",
+    "figmaBaseUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=",
+    "generatedAt": "2026-03-18",
+    "version": "2.1.0"
+  },
+
+  "$formatGuide": {
+    "$description": "Which components are relevant per output format. Check this before implementing.",
+    "prototype": {
+      "$description": "React, HTML, CSS, Tailwind, v0, Cursor — use ALL components below.",
+      "relevantComponents": ["button", "input", "menu", "header", "tab", "alert", "modal", "card", "datePicker", "switch", "chip", "messageBar", "tooltip", "controls", "chapterBar", "errorPage", "illustrations", "icons", "logo"],
+      "tokenSource": "design-tokens.json → colors.semantic + cssVariables",
+      "fontFamily": "'Metropolis UI', 'Inter', Arial, Helvetica, sans-serif"
+    },
+    "documents": {
+      "$description": "pptx, pdf, docx, xlsx — only visual/layout patterns apply, not interactive specs.",
+      "relevantComponents": ["card", "header", "chip", "messageBar", "logo"],
+      "irrelevantComponents": ["switch", "datePicker", "tooltip", "input", "controls", "tab"],
+      "tokenSource": "design-tokens.json → outputFormats.documents",
+      "fontFamily": "Inter",
+      "notes": [
+        "Map card → content box with white bg, border #C5DBE3",
+        "Map header → section header with bg #E2EDF1",
+        "Map chip styles → status badges/tags in tables",
+        "Map messageBar colors → callout boxes",
+        "Use pptxgenjs constants for presentations"
+      ]
+    }
+  },
+
+  "components": {
+
+    "button": {
+      "$figmaNode": "4426-745",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4426-745&m=dev",
+      "$description": "Pill-shaped buttons. NEVER square. Always border-radius: 48px.",
+      "$why": "Pill shape signals 'approachable' — critical for consumer-facing financial software. Sharp buttons feel too enterprise/banking.",
+      "$usage": {
+        "filled-primary": "Primary page action — 'Opslaan', 'Bevestigen'. Max 1 per action group.",
+        "filled-cta": "Highest emphasis — login, onboarding CTAs. Max 1 per entire view. Yellow.",
+        "filled-danger": "Destructive actions — 'Verwijderen', 'Annuleren abonnement'. Always requires confirmation.",
+        "outlined": "Secondary actions — 'Annuleren', 'Terug'. Pair with 1 filled button.",
+        "text": "Lowest emphasis — 'Meer info', inline links. Use when space is tight.",
+        "iconOnly": "Overflow menus, close buttons, toggles. MUST have tooltip."
+      },
+      "$a11y": {
+        "role": "button",
+        "keyboard": "Enter/Space activates. Tab navigates between buttons.",
+        "focus": "Visible focus ring required (border-focus token). Never remove outline.",
+        "disabled": "aria-disabled=true, reduced contrast (N60 text on N20 bg). Not focusable.",
+        "minTarget": "44x44px touch target, even if button appears smaller"
+      },
+      "$content": {
+        "case": "Sentence case — 'Opslaan', not 'OPSLAAN' or 'opslaan'",
+        "length": "1-3 words ideal. Max 5 words.",
+        "tone": "Active voice, start with verb — 'Opslaan', 'Verwijderen', 'Bekijk details'",
+        "avoid": "Never 'Klik hier', 'Druk op knop', or vague 'OK'/'Ja'/'Nee' without context",
+        "locale": "Dutch (NL). Use Dutch verbs: Opslaan, Annuleren, Verwijderen, Bevestigen, Toevoegen"
+      },
+      "variants": {
+        "styles": ["filled", "tonal", "outlined", "text"],
+        "sizes": {
+          "large":  { "height": "48px", "paddingX": "24px", "paddingXIcon": "16px", "gap": "8px", "iconSize": "24px", "font": "bodyMBold" },
+          "medium": { "height": "40px", "paddingX": "20px", "paddingXIcon": "12px", "gap": "8px", "iconSize": "20px", "font": "bodyMBold" },
+          "small":  { "height": "32px", "paddingX": "16px", "paddingXIcon": "10px", "gap": "6px", "iconSize": "16px", "font": "bodySBold" },
+          "xSmall": { "height": "28px", "paddingX": "12px", "paddingXIcon": "8px",  "gap": "4px", "iconSize": "16px", "font": "bodySBold" }
+        },
+        "states": ["enabled", "hovered", "focused", "pressed", "disabled"],
+        "iconPositions": ["none", "left", "right", "both"]
+      },
+      "colorMapping": {
+        "filled": {
+          "primary":   { "bg": "surface-blue-default",   "text": "text-default",  "hoverBg": "surface-blue-hovered",   "focusBg": "surface-blue-focused" },
+          "cta":       { "bg": "surface-yellow-default",  "text": "text-default",  "hoverBg": "surface-yellow-hovered", "focusBg": "surface-yellow-focused" },
+          "secondary": { "bg": "surface-white",           "text": "text-default",  "hoverBg": "surface-level-0",        "focusBg": "surface-level-1" },
+          "danger":    { "bg": "surface-red-default",     "text": "text-white",    "hoverBg": "#D66868",                "focusBg": "#DA7979" },
+          "disabled":  { "bg": "surface-disabled",        "text": "text-disabled-default" }
+        },
+        "outlined": {
+          "primary":   { "border": "border-default",  "text": "text-default",  "hoverBg": "surface-border-hovered",  "focusBg": "surface-level-1", "$hoverNote": "Figma uses --surface/surface-border-hovered (#E4EAF1 = L50), NOT surface-level-0 (#F4F7F9)" },
+          "disabled":  { "border": "#D2D4D6",         "text": "text-disabled-default" }
+        }
+      },
+      "borderRadius": "pill",
+      "anatomy": "[icon-left?] [label] [icon-right?]",
+      "rules": [
+        "NEVER use square buttons — always pill (48px radius)",
+        "Max 1 CTA (yellow) button per view",
+        "Don't mix >2 button styles in one action group",
+        "Icon-only buttons must have tooltips"
+      ],
+      "codeExample": {
+        "tailwind": "bg-[var(--surface/surface-blue-default,#6da6b9)] h-[48px] rounded-[48px] px-[24px] text-[var(--text/text-default,#1d2632)] font-semibold text-[14px] leading-[20px]"
+      }
+    },
+
+    "input": {
+      "$figmaNode": "4215-1586",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4215-1586&m=dev",
+      "$description": "Floating label inputs with bottom-border only. NEVER fully bordered boxes.",
+      "$why": "Bottom-border reduces visual clutter in data-heavy mortgage forms (20+ fields). Keeps focus on content, not containers.",
+      "$usage": {
+        "floating-label": "Default for all single-line data entry. Use for text, email, numbers, dates.",
+        "pre-label": "Horizontal layouts where label and value sit side-by-side. Use in compact data displays or read-only views.",
+        "radio": "Mutually exclusive choices (max 5 options). Use radio, not dropdown, when options ≤5.",
+        "checkbox": "Multiple selections or boolean toggles. Use checkbox, not switch, for form submissions."
+      },
+      "$a11y": {
+        "role": "textbox (input), radiogroup/radio (radio), checkbox (checkbox)",
+        "keyboard": "Tab navigates between fields. Arrow keys within radio groups. Space toggles checkbox.",
+        "focus": "Bottom border changes to B100 (#6DA6B9). Label floats up as visual indicator.",
+        "error": "aria-invalid=true, aria-describedby links to error message. Border turns R100.",
+        "label": "Always use <label> linked via htmlFor. Floating label is visual only — screen reader uses real label."
+      },
+      "$content": {
+        "label": "Noun phrase — 'Achternaam', 'E-mailadres', 'Postcode'. No colon, no instruction.",
+        "placeholder": "Optional. Example value — 'jan@voorbeeld.nl', '1234 AB'. Never repeat the label.",
+        "error": "Specific: 'Voer een geldig e-mailadres in', not 'Ongeldige invoer'.",
+        "helper": "Optional hint below field: 'Minimaal 8 tekens' or 'Format: DD-MM-JJJJ'.",
+        "locale": "Dutch (NL). Field labels in Dutch."
+      },
+      "variants": {
+        "types": ["floating-label", "pre-label", "radio", "checkbox"],
+        "sizes": {
+          "large":  { "height": "56px", "width": "400px" },
+          "medium": { "height": "44px" }
+        },
+        "states": ["enabled", "hovered", "focused", "error", "disabled"],
+        "options": ["leadIcon", "trailingIcon", "supportText", "showMore"]
+      },
+      "floatingLabel": {
+        "stateMapping": {
+          "enabled":  { "borderColor": "border-neutral-medium", "bg": "surface-level-0", "text": "text-default" },
+          "hovered":  { "borderColor": "border-hover",          "bg": "surface-level-1", "text": "text-default" },
+          "focused":  { "borderColor": "border-focus",          "bg": "surface-level-0", "text": "text-default" },
+          "error":    { "borderColor": "border-error",          "bg": "surface-level-0", "text": "text-default" },
+          "disabled": { "borderColor": "border-neutral-medium", "bg": "surface-level-0", "text": "text-disabled-light" }
+        },
+        "label": {
+          "resting": { "font": "bodyL", "color": "text-disabled-default", "position": "center" },
+          "floated": { "font": "bodyS", "color": "text-help", "position": "top" },
+          "transition": "150ms ease"
+        },
+        "supportText": { "font": "bodyS", "color": "text-help", "errorColor": "text-red-default", "marginTop": "4px" }
+      },
+      "preLabelRatios": ["50-50", "40-60", "30-70"],
+      "radioCheckbox": {
+        "size": "20px",
+        "activeBorderColor": "border-yellow",
+        "activeFill": "#FFCD00",
+        "labelFont": "bodyM",
+        "labelColor": "text-help",
+        "gap": "8px"
+      },
+      "borderStyle": "bottom-only",
+      "rules": [
+        "Inputs use bottom-border ONLY — never fully bordered boxes",
+        "Background is always L20 (#F4F7F9)",
+        "Label floats from center to top on focus/fill"
+      ]
+    },
+
+    "menu": {
+      "$figmaNode": "4215-1585",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4215-1585&m=dev",
+      "$description": "Sidebar navigation (80px dark), pull-down menus, top bars, and monograms.",
+      "$why": "Dark navy sidebar creates a professional anchor. Yellow active states provide clear wayfinding without overwhelming the interface.",
+      "sidebar": {
+        "width": "80px",
+        "height": "100vh",
+        "bg": "surface-neutral-dark",
+        "layout": "flex column, justify-between",
+        "paddingBottom": "32px",
+        "logoSize": "40px",
+        "logoPadding": "20px"
+      },
+      "menuItem": {
+        "layout": "flex column, items-center",
+        "iconContainer": { "size": "48px", "radius": "lg", "iconSize": "24px" },
+        "labelFont": "bodySBold",
+        "gap": "4px",
+        "states": {
+          "inactive":       { "bg": "transparent",         "icon": "#D2D4D6", "label": "#D2D4D6" },
+          "inactive-hover": { "bg": "#E4EAF1",             "icon": "#D2D4D6", "label": "#D2D4D6" },
+          "active":         { "bg": "#FFE680",              "icon": "#1D2632", "label": "#FFCD00" },
+          "active-hover":   { "bg": "#FCE995",              "icon": "#1D2632", "label": "#FFCD00" },
+          "selected":       { "bg": "#343C47",              "icon": "#FFFFFF", "label": "#FFFFFF" },
+          "selected-hover": { "bg": "#4A515B",              "icon": "#FFFFFF", "label": "#FFFFFF" }
+        }
+      },
+      "badge": {
+        "position": "top-right of icon container",
+        "bg": "surface-badge",
+        "text": "text-red-dark",
+        "font": "badge",
+        "radius": "full",
+        "minSize": "16px",
+        "maxSize": "34px"
+      },
+      "pullDown": {
+        "bg": "surface-pull-down-menu",
+        "radius": "lg",
+        "shadow": "popup",
+        "padding": "8px",
+        "itemHeight": "40px",
+        "itemPadding": "8px 12px",
+        "itemRadius": "sm",
+        "itemFont": "bodyM",
+        "hoverBg": "#E4EAF1"
+      },
+      "monogram": {
+        "sizes": { "large": "72px", "medium": "48px", "sidebar": "40px", "card": "32px" },
+        "shape": "circle",
+        "bg": "surface-level-1",
+        "text": "text-blue-dark",
+        "font": "bodyMBold"
+      }
+    },
+
+    "header": {
+      "$figmaNode": "4215-1587",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4215-1587&m=dev",
+      "$description": "Page headers with optional tabs and action buttons.",
+      "$why": "Blue-20 background creates a visual anchor at the top. H1 titles establish clear page context for data-heavy workflows.",
+      "$usage": {
+        "withTabs": "Multi-section pages (dashboard, detail views). Tabs allow switching without page reload.",
+        "withActions": "Pages with primary actions ('Nieuwe aanvraag', 'Exporteren'). Buttons right-aligned.",
+        "minimal": "Simple pages with only a title. Use when content speaks for itself."
+      },
+      "$content": { "title": "Page name in Dutch, sentence case. Max 4 words.", "subtitle": "Optional context — date range, record count, or breadcrumb." },
+      "bg": "surface-level-1",
+      "radius": "lg",
+      "padding": {
+        "noTabs": "24px 24px 24px 40px",
+        "withTabs": "24px 24px 0 40px"
+      },
+      "title": { "font": "h1", "color": "text-default" },
+      "subtitle": { "font": "bodyL", "color": "text-help" },
+      "actionArea": "flex row, gap 8px, right-aligned",
+      "tabArea": "flex row at bottom, no padding-bottom"
+    },
+
+    "tab": {
+      "$figmaNode": "4583-1376",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4583-1376&m=dev",
+      "$description": "Horizontal tab bar with active indicator.",
+      "$why": "Bottom-border indicator (not bg change) keeps the UI calm. Tabs sit inside the header for spatial efficiency.",
+      "$usage": { "when": "2-6 related sections on one page. Use tabs, not separate pages, when content shares context.", "avoid": "Don't use tabs for 1 section or 7+ sections. Use sidebar nav for deep hierarchies." },
+      "$a11y": { "role": "tablist/tab/tabpanel", "keyboard": "Arrow keys navigate tabs. Tab key moves to panel content.", "focus": "Active tab has visible 2px bottom border." },
+      "$content": { "label": "1-2 words max. Noun — 'Overzicht', 'Details', 'Documenten'. No verbs." },
+      "padding": { "horizontal": "16px", "top": "12px", "bottom": "16px" },
+      "$paddingNote": "horizontal 16px confirmed from Figma (px-[16px]), was incorrectly 24px",
+      "font": "bodyMBold",
+      "active": { "text": "text-default", "borderBottom": "2px solid", "borderColor": "surface-blue-default", "$borderNote": "Figma uses --surface/surface-blue-default for tab border, NOT --border/border-focus. Same hex (#6DA6B9) but different token." },
+      "inactive": { "text": "text-disabled-default", "borderBottom": "none" },
+      "bar": { "borderBottom": "1px solid", "borderColor": "border-default" },
+      "codeExample": {
+        "tailwind": "border-b-2 border-[var(--surface/surface-blue-default,#6da6b9)] pb-[16px] pt-[12px] px-[16px] font-semibold text-[14px]"
+      }
+    },
+
+    "alert": {
+      "$figmaNode": "4599-1716",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4599-1716&m=dev",
+      "$description": "Dialog-style alerts with icon, title, body, and action buttons.",
+      "$why": "Icon circles per status type create instant visual recognition. B120 title color separates from body text without using Bold.",
+      "$usage": { "when": "Confirmation before destructive actions, important notifications that require user response.", "avoid": "Don't use for informational messages (use messageBar). Don't use for form validation (use inline errors)." },
+      "$a11y": { "role": "alertdialog", "keyboard": "Escape closes. Tab cycles through action buttons. Focus trapped inside.", "focus": "Auto-focus on primary action button when opened." },
+      "$content": { "title": "Short question or statement — 'Weet je het zeker?', 'Aanvraag verwijderen'", "body": "Max 2 sentences explaining consequence.", "actions": "Primary: positive verb ('Verwijderen', 'Bevestigen'). Secondary: 'Annuleren'." },
+      "width": "400px",
+      "bg": "surface-white",
+      "radius": "lg",
+      "shadow": "popup",
+      "padding": "24px",
+      "iconCircle": {
+        "size": "80px",
+        "$sizeNote": "80px is the circle container. The icon INSIDE is 48px. Confirmed from Figma (size-[80px]).",
+        "iconInnerSize": "48px",
+        "radius": "full",
+        "variants": {
+          "error":   { "bg": "surface-red-light",   "icon": "text-red-default" },
+          "warning": { "bg": "surface-badge",        "icon": "text-red-dark" },
+          "info":    { "bg": "surface-pull-down-menu","icon": "text-blue-dark" },
+          "success": { "bg": "surface-green-light",  "icon": "text-green-dark" }
+        }
+      },
+      "title": { "font": "h3", "color": "text-blue-dark" },
+      "body": { "font": "bodyL", "color": "text-default" },
+      "buttonDivider": { "borderTop": "1px solid", "borderColor": "border-default" },
+      "actions": "button row, gap 8px"
+    },
+
+    "modal": {
+      "$figmaNode": "5916-1355",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=5916-1355&m=dev",
+      "$description": "Overlay modals with close button, optional icon, and action buttons.",
+      "$why": "Modals interrupt flow intentionally — use only when task requires focused attention away from the page context.",
+      "$usage": { "when": "Complex forms, detail views, or multi-step tasks that need focus. Use small (480px) for simple, large (800px) for data-rich.", "avoid": "Don't use modals for simple confirmations (use alert). Don't stack modals on modals." },
+      "$a11y": { "role": "dialog", "keyboard": "Escape closes. Tab cycles through interactive elements. Focus trapped inside.", "focus": "Auto-focus on first interactive element or close button." },
+      "$content": { "title": "Task name — 'Nieuwe klant toevoegen', 'Document uploaden'", "close": "X button top-right, always present. aria-label='Sluiten'." },
+      "width": { "small": "480px", "medium": "520px", "large": "800px" },
+      "overlay": "rgba(0,0,0,0.5)",
+      "bg": "surface-white",
+      "radius": "lg",
+      "shadow": "popup",
+      "padding": "24px",
+      "closeButton": { "position": "top-right", "size": "48px", "type": "icon-only" },
+      "title": { "font": "h3", "color": "text-blue-dark" },
+      "body": { "font": "bodyL", "color": "text-default" },
+      "actions": "button row, gap 8px, right-aligned"
+    },
+
+    "card": {
+      "$figmaNode": "4215-1588",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4215-1588&m=dev",
+      "$description": "Content containers. White bg, 16px radius, card shadow.",
+      "$why": "16px radius is friendly but not childish — right for financial context. White cards on light bg create depth without heavy shadows.",
+      "bg": "surface-white",
+      "radius": "lg",
+      "shadow": "card",
+      "padding": "24px",
+      "titleBar": {
+        "font": "bodyMBold",
+        "color": "text-default",
+        "borderBottom": "1px solid",
+        "borderColor": "border-default",
+        "paddingBottom": "16px",
+        "marginBottom": "16px"
+      },
+      "variants": ["card", "side-panel", "text-box", "note", "section-header"],
+      "note": {
+        "bg": "surface-note",
+        "borderLeft": "4px solid",
+        "borderColor": "surface-note-fold",
+        "radius": "sm (right corners only)",
+        "padding": "12px 16px",
+        "font": "bodyM"
+      }
+    },
+
+    "datePicker": {
+      "$figmaNode": "5819-9835",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=5819-9835&m=dev",
+      "$description": "Calendar date picker with day grid.",
+      "container": { "bg": "surface-white", "radius": "lg", "shadow": "popup", "padding": "16px" },
+      "header": { "font": "bodyMBold", "color": "text-default" },
+      "dayHeaders": { "font": "bodySBold", "color": "text-disabled-default" },
+      "dayCells": {
+        "default":   { "bg": "transparent",        "text": "text-default" },
+        "today":     { "bg": "surface-level-1",     "text": "border-focus" },
+        "selected":  { "bg": "surface-blue-default", "text": "text-white" },
+        "prevNext":  { "bg": "transparent",          "text": "text-disabled-light" }
+      },
+      "variants": ["radio-current-date", "radio-specific-date", "dates-only"]
+    },
+
+    "switch": {
+      "$figmaNode": "4708-5212",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4708-5212&m=dev",
+      "$description": "Toggle switches in two sizes.",
+      "$why": "Switches give immediate visual feedback for on/off states. Blue ON = active/enabled aligns with the primary action color.",
+      "$usage": { "when": "Instant toggles that take effect immediately (settings, preferences). Use switch, not checkbox, for real-time toggles.", "avoid": "Don't use in forms that require a submit button — use checkbox instead." },
+      "$a11y": { "role": "switch", "keyboard": "Space toggles. Focusable with Tab.", "aria": "aria-checked=true/false, aria-label required if no adjacent label." },
+      "$content": { "label": "Describe the ON state: 'Notificaties', 'Automatisch opslaan'. Adjacent label, not inside switch." },
+      "sizes": {
+        "large":  { "trackW": "52px", "trackH": "32px", "thumbSize": "24px" },
+        "medium": { "trackW": "40px", "trackH": "20px", "thumbSize": "16px" }
+      },
+      "trackRadius": "full",
+      "states": {
+        "on":  { "trackBg": "surface-switch-active",  "thumbBg": "#FFFFFF", "thumbPosition": "right" },
+        "off": { "trackBg": "transparent", "trackBorder": "2px solid", "trackBorderColor": "border-switch-inactive", "thumbBg": "#CAD5E3", "thumbPosition": "left" }
+      },
+      "codeExample": {
+        "on":  "bg-[var(--surface/surface-switch-active,#6da6b9)] h-[32px] w-[52px] rounded-[32px]",
+        "off": "border-2 border-[var(--border/border-switch-inactive,#cad5e3)] h-[32px] w-[52px] rounded-[32px]"
+      }
+    },
+
+    "chip": {
+      "$figmaNode": "5828-10600",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=5828-10600&m=dev",
+      "$description": "Pill-shaped status and filter chips.",
+      "$why": "Pill shape matches buttons for visual consistency. Status colors provide instant recognition without reading text.",
+      "$usage": {
+        "positive": "Completed, approved, active states — green bg #CDF0EA",
+        "warning": "Attention needed, pending review — red-light bg #EDBCBC",
+        "regular": "Neutral info, category labels — grey bg #EFF2F7",
+        "default": "Removable filters, user selections — white bg with border",
+        "monogram": "Person references — shows initials + name, blue bg #E2EDF1"
+      },
+      "$a11y": { "role": "status (read-only) or button (interactive/removable)", "keyboard": "If removable: Enter/Space removes, Backspace removes. Tab focusable." },
+      "$content": { "label": "1-2 words. Noun or adjective — 'Actief', 'In behandeling', 'Hypotheek'. No verbs." },
+      "height": "32px",
+      "radius": "pill",
+      "padding": "4px 12px",
+      "font": "bodyS",
+      "styles": {
+        "default":  { "bg": "#FFFFFF", "border": "1px solid #C5DBE3", "text": "#1D2632" },
+        "outlined": { "bg": "transparent", "border": "1px solid #C5DBE3", "text": "#1D2632" },
+        "positive": { "bg": "#CDF0EA", "border": "none", "text": "#005C3E" },
+        "warning":  { "bg": "#EDBCBC", "border": "none", "text": "#951C1C" },
+        "regular":  { "bg": "#EFF2F7", "border": "none", "text": "#1D2632" }
+      },
+      "monogramChip": {
+        "monogramSize": "24px",
+        "bg": "#E2EDF1",
+        "text": "#316A7D",
+        "font": "bodySBold",
+        "gap": "6px",
+        "padding": "4px 12px 4px 4px"
+      },
+      "codeExample": {
+        "tailwind": "bg-white border border-[var(--border/border-default,#c5dbe3)] h-[32px] rounded-[48px] px-[12px] text-[12px] leading-[16px]"
+      }
+    },
+
+    "messageBar": {
+      "$figmaNode": "6308-1090",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=6308-1090&m=dev",
+      "$description": "Status message bars with icon, header, and body text.",
+      "$why": "Inline feedback within the page flow. Unlike alerts, message bars don't interrupt — they inform while the user continues working.",
+      "$usage": {
+        "warning": "Action needed but not blocking — 'Uw sessie verloopt over 5 minuten'",
+        "info": "Helpful context — 'Dit formulier wordt automatisch opgeslagen'",
+        "success": "Confirmation after action — 'Aanvraag succesvol ingediend'",
+        "error": "Validation error at form/page level — 'Niet alle verplichte velden zijn ingevuld'"
+      },
+      "$a11y": { "role": "alert (error/warning) or status (info/success)", "aria": "aria-live=polite (info/success) or aria-live=assertive (error/warning)", "close": "If dismissible: close button with aria-label='Melding sluiten'" },
+      "$content": { "header": "Short summary — 'Fout bij opslaan', 'Sessie verloopt'. Optional.", "body": "1-2 sentences explaining what happened and what to do." },
+      "radius": "sm",
+      "$radiusNote": "8px — confirmed from Figma (rounded-[8px]), NOT 16px like cards/modals",
+      "padding": "16px",
+      "layout": "[Icon 24x24] [Content] [Close?]",
+      "gap": "8px",
+      "$gapNote": "8px confirmed from Figma (gap-[8px]), was incorrectly 12px",
+      "headerFont": "bodyLBold",
+      "bodyFont": "bodyM",
+      "types": {
+        "warning": { "bg": "#EDBCBC", "iconColor": "#951C1C", "headerColor": "#951C1C", "bodyColor": "#951C1C", "semanticBg": "surface-badge",          "semanticText": "text-red-dark" },
+        "info":    { "bg": "#EFF2F7", "iconColor": "#316A7D", "headerColor": "#316A7D", "bodyColor": "#316A7D", "semanticBg": "surface-pull-down-menu",  "semanticText": "text-blue-dark" },
+        "success": { "bg": "#CDF0EA", "iconColor": "#005C3E", "headerColor": "#005C3E", "bodyColor": "#005C3E", "semanticBg": "surface-green-light",     "semanticText": "text-green-dark" },
+        "error":   { "bg": "#F6DEDE", "iconColor": "#D15858", "headerColor": "#951C1C", "bodyColor": "#951C1C", "semanticBg": "surface-red-light",       "semanticText": "text-red-dark" }
+      },
+      "codeExamples": {
+        "warning": "bg-[var(--surface/surface-badge,#edbcbc)] text-[var(--text/text-red-dark,#951c1c)]",
+        "info":    "bg-[var(--surface/surface-pull-down-menu,#eff2f7)] text-[var(--text/text-blue-dark,#316a7d)]",
+        "success": "bg-[var(--surface/surface-green-light,#cdf0ea)] text-[var(--text/text-green-dark,#005c3e)]"
+      }
+    },
+
+    "tooltip": {
+      "$figmaNode": "7815-7551",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=7815-7551&m=dev",
+      "$description": "Contextual tooltips on hover/focus.",
+      "$usage": { "when": "Icon-only buttons, truncated text, abbreviations. Always pair with icon-only buttons.", "avoid": "Don't use for essential info (not visible on mobile/touch). Don't put interactive content in tooltips." },
+      "$a11y": { "role": "tooltip", "keyboard": "Appears on focus (not just hover). Escape dismisses.", "aria": "aria-describedby on trigger element pointing to tooltip id." },
+      "$content": { "text": "Max 1 sentence. Plain text only — no links, no formatting." },
+      "bg": "surface-help",
+      "radius": "xs",
+      "shadow": "hovered",
+      "padding": "4px 8px",
+      "font": "bodyS",
+      "textColor": "text-white",
+      "maxWidth": "200px",
+      "arrow": "8px triangle",
+      "codeExample": {
+        "tailwind": "bg-[var(--surface/surface-help,#4a515b)] text-white rounded-[4px] px-[8px] py-[4px] text-[12px] leading-[16px]"
+      }
+    },
+
+    "controls": {
+      "$figmaNode": "4215-1584",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4215-1584&m=dev",
+      "$description": "Search bars, pagination, segmented controls, filter/sort.",
+      "searchBar": { "type": "floating-label-input with search icon lead" },
+      "pagination": {
+        "itemSize": "32px",
+        "radius": "sm",
+        "active": { "bg": "surface-blue-default", "text": "text-white" },
+        "inactive": { "bg": "transparent", "text": "text-default", "hoverBg": "surface-level-0" },
+        "gap": "4px"
+      },
+      "segmentedControl": {
+        "containerBg": "surface-level-0",
+        "containerBorder": "1px solid border-default",
+        "containerRadius": "xl",
+        "itemRadius": "sm",
+        "sizes": { "large": "40px", "medium": "32px" },
+        "active": { "bg": "#C5DBE3", "text": "text-default" },
+        "inactive": { "bg": "transparent", "text": "text-default" },
+        "font": "bodySBold",
+        "padding": "0 16px"
+      }
+    },
+
+    "chapterBar": {
+      "$figmaNode": "4215-1592",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4215-1592&m=dev",
+      "$description": "Section dividers for multi-step forms.",
+      "bg": "surface-level-1",
+      "radius": "lg",
+      "padding": "12px 16px",
+      "font": "bodyMBold",
+      "textColor": "text-default"
+    },
+
+    "errorPage": {
+      "$figmaNode": "10163-6213",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=10163-6213&m=dev",
+      "$description": "Full-page error display (404, 500, etc.).",
+      "bg": "surface-level-0",
+      "layout": "centered, max-width 480px",
+      "errorCode": { "font": "h1", "color": "text-default" },
+      "message": { "font": "bodyL", "color": "text-help" },
+      "actionButton": { "style": "filled primary", "bg": "surface-blue-default" },
+      "spacing": "24px between elements",
+      "illustration": "UFO with character_hexagon + character_rectangle"
+    },
+
+    "illustrations": {
+      "$figmaNode": "57141-7401",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=57141-7401&m=dev",
+      "$description": "Branded illustration scenes used across the product.",
+      "scenes": [
+        "Geen berekening - Placeholder",
+        "Start_met_CRM",
+        "Start_zonder_CRM",
+        "Hoeveel_kan_ik_lenen",
+        "Samenvatting_huis_kopen_foto",
+        "Samenvatting_huis_kopen",
+        "Stappenplan (6 steps)",
+        "Error placeholder"
+      ],
+      "characters": {
+        "character_hexagon": { "color": "yellow", "shape": "hexagon" },
+        "character_rectangle": { "color": "orange", "shape": "rectangle" }
+      }
+    },
+
+    "icons": {
+      "$figmaNode": "57141-7400",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=57141-7400&m=dev",
+      "$description": "Icon set. Standard size 24x24px. Use within components at specified sizes.",
+      "defaultSize": "24px",
+      "sizes": { "standard": "24px", "small": "20px", "xSmall": "16px", "large": "32px" },
+      "color": "Inherits from parent text/icon color token"
+    },
+
+    "table": {
+      "$figmaNode": "PLACEHOLDER",
+      "$description": "Data tables with headers, rows, and alternating backgrounds.",
+      "$why": "Mortgage data (rates, payments, scenarios) requires clear, scannable tables. Card-based design below 1024px ensures mobile usability.",
+      "$usage": { "when": "Displaying structured data like loan comparison tables, amortization schedules, rate tables.", "avoid": "Don't use tables for layouts. Don't nest tables. Use card list below 1024px instead." },
+      "$a11y": { "role": "table/thead/tbody/tr/td", "keyboard": "Focusable with Tab. Sorting headers are buttons.", "aria": "aria-sort, aria-label for header abbreviations." },
+      "$content": { "headers": "Short noun — 'Bedrag', 'Rente (%)', 'Maandlasten'. No verbs.", "cells": "Numeric or brief text. Use monospace for currency." },
+      "container": { "bg": "surface-white", "radius": "lg", "shadow": "card", "padding": "16px" },
+      "header": {
+        "bg": "surface-level-1",
+        "bgHex": "#E2EDF1",
+        "font": "bodyMBold",
+        "fontHex": "#1D2632",
+        "borderBottom": "1px solid",
+        "borderColor": "border-default",
+        "borderHex": "#C5DBE3",
+        "padding": "12px 16px",
+        "textAlign": "left"
+      },
+      "rows": {
+        "bg": { "default": "#FFFFFF", "alternate": "#F4F7F9" },
+        "borderBottom": "1px solid",
+        "borderColor": "border-default",
+        "borderHex": "#C5DBE3",
+        "padding": "12px 16px",
+        "hover": { "bg": "#F4F7F9" }
+      },
+      "cells": {
+        "font": "bodyM",
+        "fontHex": "#1D2632",
+        "padding": "12px 16px",
+        "textAlign": "left"
+      },
+      "responsive": {
+        "breakpoint": "1024px",
+        "above": "Table layout with header row",
+        "below": "Card-based layout (one row per card, stack vertically)"
+      },
+      "codeExample": {
+        "tailwind": {
+          "table": "w-full border-collapse",
+          "header": "bg-[var(--surface/surface-level-1,#e2edf1)] font-semibold text-[14px] border-b border-[var(--border/border-default,#c5dbe3)] px-[16px] py-[12px]",
+          "row": "border-b border-[var(--border/border-default,#c5dbe3)]",
+          "rowAlternate": "bg-[#f4f7f9]",
+          "rowHover": "hover:bg-[#f4f7f9]",
+          "cell": "px-[16px] py-[12px] text-[14px] text-[var(--text/text-default,#1d2632)]"
+        }
+      }
+    },
+
+    "logo": {
+      "$figmaNode": "3160-856",
+      "$figmaUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=3160-856&m=dev",
+      "$description": "Blinqx logo — black hexagon + 'BLINQX' wordmark.",
+      "color": "#000000",
+      "asset": "assets/blinqx-logo.svg",
+      "assetFigma": "https://www.figma.com/api/mcp/asset/eae796da-9a54-43fa-944f-503308d5cfad",
+      "sizes": {
+        "sidebar": "40x40px",
+        "nav": "124x40px",
+        "favicon": "24x24px (minimum)"
+      },
+      "rules": [
+        "Preserve aspect ratio — never stretch",
+        "On dark bg: use white/light version",
+        "On light bg: use dark version"
+      ]
+    }
+  },
+
+  "interactionStates": {
+    "$description": "Every interactive element must implement all 5 states.",
+    "states": ["enabled", "hovered", "focused", "pressed", "disabled"],
+    "minTouchTarget": "44x44px",
+    "transitions": {
+      "default": "150ms ease",
+      "hover": "background-color 150ms ease",
+      "focus": "border-color 150ms ease"
+    }
+  },
+
+  "layoutPatterns": {
+    "$description": "Standard page layout compositions.",
+    "splitRatios": ["30-70", "40-60", "50-50", "70-30"],
+    "containerGap": "16px",
+    "panelDefaults": { "bg": "surface-white", "radius": "lg", "shadow": "card", "padding": "24px" },
+    "responsive": { "stackBelow": "1024px" },
+    "patterns": {
+      "topNavContent": { "navHeight": "90px", "contentWidth": "1120px", "sideMargin": "140px", "viewport": "1400px" },
+      "sidebarContent": { "sidebarWidth": "80px", "sidebarBg": "surface-neutral-dark" },
+      "login": { "brandArea": "60%", "loginCard": "40%", "maxWidth": "440px" }
+    }
+  },
+
+  "shadcnMapping": {
+    "$description": "Maps Blinqx Figma components to shadcn/ui equivalents. AI tools: use these shadcn components with Blinqx styling overrides.",
+    "button":     { "shadcn": "Button",       "variants": "default|destructive|outline|secondary|ghost|link", "blinqxOverride": "Always rounded-full (pill), never default rounded" },
+    "input":      { "shadcn": "Input",        "blinqxOverride": "Bottom-border only, floating label pattern (custom, not stock shadcn)" },
+    "card":       { "shadcn": "Card",         "blinqxOverride": "rounded-xl (16px), shadow-card, padding 24px" },
+    "alert":      { "shadcn": "AlertDialog",  "blinqxOverride": "Custom icon circle per status type, H3 title in B120" },
+    "modal":      { "shadcn": "Dialog",       "blinqxOverride": "rounded-xl, shadow-popup, button divider border-top" },
+    "tab":        { "shadcn": "Tabs",         "blinqxOverride": "Active = border-bottom 2px B100, not bg change" },
+    "chip":       { "shadcn": "Badge",        "blinqxOverride": "Pill shape, use positive/warning/regular color variants" },
+    "switch":     { "shadcn": "Switch",       "blinqxOverride": "Track B100 when ON, border L100 when OFF" },
+    "tooltip":    { "shadcn": "Tooltip",      "blinqxOverride": "bg N80, rounded-[4px], not default shadcn styling" },
+    "datePicker": { "shadcn": "Calendar + Popover", "blinqxOverride": "Selected day = B100 bg, today = B20 bg" },
+    "menu":       { "shadcn": "DropdownMenu", "blinqxOverride": "Dark theme for header menu, L30 bg for pull-downs" },
+    "messageBar": { "shadcn": "Alert (inline)", "blinqxOverride": "Use status color patterns, rounded-[8px] NOT default" },
+    "header":     { "shadcn": "Custom (no equivalent)", "blinqxOverride": "Full-width B20 bg with H1 title, see component-patterns.md" },
+    "controls":   { "shadcn": "RadioGroup + Checkbox + Select", "blinqxOverride": "Yellow active indicator, not blue" }
+  },
+
+  "compositionRules": {
+    "$description": "Rules for how components combine. AI tools: follow these to avoid incorrect assembly.",
+    "card": {
+      "structure": "[Title bar (optional)] → [Content] → [Action bar (optional)]",
+      "titleBar": "MUST have border-bottom 1px border-default if present",
+      "nesting": "Cards go on page bg (L20). Never nest card inside card without visual separation."
+    },
+    "modal": {
+      "structure": "[Close button top-right] → [Icon circle (optional)] → [Title H3] → [Body] → [Button divider] → [Actions]",
+      "overlay": "MUST have rgba(0,0,0,0.5) overlay behind modal",
+      "actions": "Primary button right, secondary/cancel left. Max 2 buttons."
+    },
+    "alert": {
+      "structure": "[Icon circle] → [Title H3] → [Body] → [Actions]",
+      "iconCircle": "MUST match status type: error=R20/R100, warning=R40/R120, info=L30/B120, success=G20/G130"
+    },
+    "header": {
+      "structure": "[Title H1] [Subtitle (optional)] [Action buttons (optional)] [Tabs (optional at bottom)]",
+      "tabs": "If tabs present, remove bottom padding — tabs touch bottom edge of header"
+    },
+    "messageBar": {
+      "structure": "[Icon 24x24] → [Header (optional) + Body] → [Close button (optional)]",
+      "headerBody": "If both header and body: header=bodyLBold, body=bodyM, gap=4px"
+    },
+    "form": {
+      "structure": "[Chapter bar (optional)] → [Input groups] → [Action buttons]",
+      "inputGroups": "Stack vertically, gap 16px. Pre-label inputs for horizontal layouts.",
+      "actions": "Right-aligned, primary button right, cancel left"
+    },
+    "navigation": {
+      "rule": "Top bar OR sidebar — NEVER both simultaneously",
+      "sidebar": "Logo at top (40x40, padding 20px), nav items below, settings/profile at bottom",
+      "topBar": "Logo left (124x40), nav center, org picker + avatar right"
+    }
+  },
+
+  "imports": {
+    "$description": "Standard imports for Blinqx prototypes. Use these exact paths.",
+    "shadcn": {
+      "Button": "import { Button } from '@/components/ui/button'",
+      "Input": "import { Input } from '@/components/ui/input'",
+      "Label": "import { Label } from '@/components/ui/label'",
+      "Card": "import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'",
+      "Dialog": "import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog'",
+      "AlertDialog": "import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'",
+      "Tabs": "import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'",
+      "Switch": "import { Switch } from '@/components/ui/switch'",
+      "Badge": "import { Badge } from '@/components/ui/badge'",
+      "Tooltip": "import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'",
+      "DropdownMenu": "import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'",
+      "Avatar": "import { Avatar, AvatarFallback } from '@/components/ui/avatar'"
+    },
+    "icons": {
+      "library": "lucide-react",
+      "example": "import { Home, ChevronDown, User, X, Search, Filter, Plus, MoreHorizontal, Info, AlertTriangle, CheckCircle, XCircle } from 'lucide-react'",
+      "sizing": "className='w-4 h-4' (small) | 'w-5 h-5' (default) | 'w-6 h-6' (large)"
+    },
+    "utils": {
+      "cn": "import { cn } from '@/lib/utils'",
+      "note": "cn() combines clsx + tailwind-merge for conditional class merging"
+    }
+  }
+}

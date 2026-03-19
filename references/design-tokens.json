@@ -1,0 +1,713 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "Blinqx Design System tokens — synced from Figma Style Guide (F5hNn1cAwIeKGJgEFJV64q)",
+  "$meta": {
+    "source": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q",
+    "figmaNodeIds": {
+      "colors": "3006-15",
+      "typography": "4345-4080"
+    },
+    "generatedAt": "2026-03-19",
+    "version": "3.0.0",
+    "colorMode": "light-only",
+    "$colorModeNote": "Blinqx has no dark mode. All tokens are light theme. If dark mode is added in future, add a 'dark' key alongside 'light' values."
+  },
+
+  "identity": {
+    "$description": "Design rationale — WHY Blinqx looks the way it does. Read this to make decisions for edge cases and new components.",
+    "product": "Financial software for mortgage advisors and homebuyers (Netherlands)",
+    "tone": "Trustworthy + approachable — professional enough for financial decisions, warm enough not to intimidate first-time homebuyers",
+    "principles": [
+      "Professional but not corporate — navy over black, muted blue over saturated, SemiBold over Bold",
+      "Friendly but not playful — pill buttons, rounded containers, but structured layouts with clear hierarchy",
+      "Calm expertise — the 'trusted advisor' feeling, not aggressive sales or sterile banking",
+      "Data-first — minimal chrome, bottom-border inputs, generous spacing, hierarchy through size not weight",
+      "One voice — max 1 CTA per view, consistent status patterns, no mixing of more than 2 button styles"
+    ],
+    "decisionTest": [
+      "Would a mortgage advisor show this to a client? → If too playful, dial back",
+      "Would a first-time homebuyer feel comfortable? → If too corporate, warm it up",
+      "Is there clear visual hierarchy? → One CTA, clear headings, calm body text"
+    ]
+  },
+
+  "colors": {
+    "palette": {
+      "$description": "Raw color scales. 100 = base. Lower = lighter, higher = darker. 8 families + white.",
+      "blue": {
+        "$description": "Primary brand color. Used for interactive elements, focus states, active indicators.",
+        "10": { "$value": "#F0F6F8", "$description": "Lightest blue tint" },
+        "20": { "$value": "#E2EDF1", "$description": "Header bg, surface-level-1" },
+        "30": { "$value": "#D3E4EA", "$description": "Surface-level-2" },
+        "40": { "$value": "#C5DBE3", "$description": "Default border, surface-level-3" },
+        "50": { "$value": "#B6D2DC" },
+        "60": { "$value": "#A7CAD5" },
+        "70": { "$value": "#99C1CE" },
+        "80": { "$value": "#8AB8C7", "$description": "Focus/pressed state" },
+        "90": { "$value": "#7CAFC0", "$description": "Hover state" },
+        "100": { "$value": "#6DA6B9", "$description": "Primary base — buttons, links, switches, tabs" },
+        "110": { "$value": "#4F889B" },
+        "120": { "$value": "#316A7D", "$description": "Dark blue — alert titles, active nav, info text" },
+        "130": { "$value": "#134C5F" },
+        "140": { "$value": "#002E41" },
+        "150": { "$value": "#001023" }
+      },
+      "yellow": {
+        "$description": "CTA/Accent color. Max 1 CTA per view. Active menu labels.",
+        "10": { "$value": "#FEF9E4", "$description": "Note background" },
+        "20": { "$value": "#FDF4C8", "$description": "Yellow surface light" },
+        "30": { "$value": "#FFF0B3" },
+        "40": { "$value": "#FCE995", "$description": "Active nav hover" },
+        "50": { "$value": "#FFE680", "$description": "Active nav item bg" },
+        "60": { "$value": "#FADD68" },
+        "70": { "$value": "#FFDC4D" },
+        "80": { "$value": "#F9D244", "$description": "Note fold, yellow focus" },
+        "90": { "$value": "#FFD21A" },
+        "100": { "$value": "#FFCD00", "$description": "CTA base — max 1 per view" },
+        "110": { "$value": "#D7A500" },
+        "120": { "$value": "#AF7D00" },
+        "130": { "$value": "#875500", "$description": "Dark yellow text" },
+        "140": { "$value": "#5F2D00" },
+        "150": { "$value": "#2D0000" }
+      },
+      "red": {
+        "$description": "Error/danger color family. Also used for warning message backgrounds.",
+        "10": { "$value": "#FAEEEE" },
+        "20": { "$value": "#F6DEDE", "$description": "Error surface light, alert icon bg" },
+        "30": { "$value": "#F1CDCD" },
+        "40": { "$value": "#EDBCBC", "$description": "Warning message bg, badge bg" },
+        "50": { "$value": "#E8ABAB" },
+        "60": { "$value": "#E39B9B" },
+        "70": { "$value": "#DF8A8A" },
+        "80": { "$value": "#DA7979" },
+        "90": { "$value": "#D66868" },
+        "100": { "$value": "#D15858", "$description": "Error base — borders, icons, destructive actions" },
+        "110": { "$value": "#B33A3A" },
+        "120": { "$value": "#951C1C", "$description": "Dark red — warning/error text on light bg" },
+        "130": { "$value": "#770000" },
+        "140": { "$value": "#590000" },
+        "150": { "$value": "#3B0000" }
+      },
+      "green": {
+        "$description": "Success/positive color family.",
+        "10": { "$value": "#E6F8F5" },
+        "20": { "$value": "#CDF0EA", "$description": "Success surface light" },
+        "30": { "$value": "#B4E9E0" },
+        "40": { "$value": "#9BE2D6" },
+        "50": { "$value": "#81DACB" },
+        "60": { "$value": "#68D3C1" },
+        "70": { "$value": "#4FCCB7" },
+        "80": { "$value": "#36C5AD" },
+        "90": { "$value": "#1DBDA2" },
+        "100": { "$value": "#04B698", "$description": "Success base" },
+        "110": { "$value": "#00987A" },
+        "120": { "$value": "#007A5C" },
+        "130": { "$value": "#005C3E", "$description": "Dark green — success text on light bg" },
+        "140": { "$value": "#003E20" },
+        "150": { "$value": "#002002" }
+      },
+      "orange": {
+        "$description": "Warning/attention color family. Status indicator.",
+        "10": { "$value": "#FFF6EF" },
+        "20": { "$value": "#FFEEDF" },
+        "30": { "$value": "#FFE5CE" },
+        "40": { "$value": "#FFDDBE" },
+        "50": { "$value": "#FFD4AE" },
+        "60": { "$value": "#FFCB9D" },
+        "70": { "$value": "#FFC28C" },
+        "80": { "$value": "#FFB97A" },
+        "90": { "$value": "#FFAF67" },
+        "100": { "$value": "#FFA652", "$description": "Warning base" },
+        "110": { "$value": "#DE9046" },
+        "120": { "$value": "#BE7A3B" },
+        "130": { "$value": "#9E652F" },
+        "140": { "$value": "#805125" },
+        "150": { "$value": "#633E1A" }
+      },
+      "neutral": {
+        "$description": "Text, backgrounds, disabled states. No tints below 10.",
+        "10": { "$value": "#E8E9EB" },
+        "20": { "$value": "#D2D4D6", "$description": "Disabled text, inactive menu labels" },
+        "30": { "$value": "#BBBEC2" },
+        "40": { "$value": "#A5A8AD", "$description": "Input default border" },
+        "50": { "$value": "#8E9298" },
+        "60": { "$value": "#777D84", "$description": "Placeholder, inactive tabs" },
+        "70": { "$value": "#616770" },
+        "80": { "$value": "#4A515B", "$description": "Help text, tooltip bg, hover borders" },
+        "90": { "$value": "#343C47", "$description": "Selected nav, dark hover" },
+        "100": { "$value": "#1D2632", "$description": "Default text, sidebar bg, darkest neutral" }
+      },
+      "lavender": {
+        "$description": "Surface/background tints. Used for page bg, pull-down menus, nav states.",
+        "10": { "$value": "#FAFBFC" },
+        "20": { "$value": "#F4F7F9", "$description": "Page background (surface-level-0)" },
+        "30": { "$value": "#EFF2F7", "$description": "Pull-down menu bg, info message bg" },
+        "40": { "$value": "#EAEEF4" },
+        "50": { "$value": "#E4EAF1", "$description": "Inactive nav hover" },
+        "60": { "$value": "#DFE6EE" },
+        "70": { "$value": "#DAE2EB" },
+        "80": { "$value": "#D5DDE9" },
+        "90": { "$value": "#CFD9E6" },
+        "100": { "$value": "#CAD5E3", "$description": "Switch inactive border/thumb" }
+      },
+      "white": { "$value": "#FFFFFF" }
+    },
+
+    "semantic": {
+      "$description": "Named tokens mapped to palette values. Use these in code, not raw hex.",
+      "surface": {
+        "$description": "Background fills for containers, components, and interactive states.",
+        "neutral-dark":      { "$value": "{colors.palette.neutral.100}", "$resolvedValue": "#1D2632", "$description": "Sidebar, dark nav backgrounds" },
+        "neutral-hover":     { "$value": "{colors.palette.neutral.90}",  "$resolvedValue": "#343C47", "$description": "Dark bg hover" },
+        "neutral-focus":     { "$value": "{colors.palette.neutral.80}",  "$resolvedValue": "#4A515B", "$description": "Dark bg focus/pressed" },
+        "blue-default":      { "$value": "{colors.palette.blue.100}",    "$resolvedValue": "#6DA6B9", "$description": "Primary button bg, active switch, selected date" },
+        "blue-dark":         { "$value": "{colors.palette.blue.120}",    "$resolvedValue": "#316A7D", "$description": "Dark blue surface" },
+        "blue-hovered":      { "$value": "{colors.palette.blue.90}",     "$resolvedValue": "#7CAFC0", "$description": "Primary hover" },
+        "blue-focused":      { "$value": "{colors.palette.blue.80}",     "$resolvedValue": "#8AB8C7", "$description": "Primary focus/pressed" },
+        "blue-light":        { "$value": "{colors.palette.blue.30}",     "$resolvedValue": "#D3E4EA", "$description": "Light blue surface" },
+        "yellow-default":    { "$value": "{colors.palette.yellow.100}",  "$resolvedValue": "#FFCD00", "$description": "CTA button bg" },
+        "yellow-hovered":    { "$value": "#FFD631",                      "$description": "CTA hover" },
+        "yellow-focused":    { "$value": "{colors.palette.yellow.80}",   "$resolvedValue": "#F9D244", "$description": "CTA focus state" },
+        "yellow-pressed":    { "$value": "{colors.palette.yellow.80}",   "$resolvedValue": "#F9D244", "$description": "CTA pressed state (same hex as focused in Figma)" },
+        "border-hovered":    { "$value": "{colors.palette.lavender.50}", "$resolvedValue": "#E4EAF1", "$description": "Outlined button hover bg, subtle hover surface" },
+        "yellow-light":      { "$value": "{colors.palette.yellow.20}",   "$resolvedValue": "#FDF4C8", "$description": "Yellow light surface" },
+        "red-default":       { "$value": "{colors.palette.red.100}",     "$resolvedValue": "#D15858", "$description": "Error/danger button bg" },
+        "red-dark":          { "$value": "{colors.palette.red.120}",     "$resolvedValue": "#951C1C" },
+        "red-light":         { "$value": "{colors.palette.red.20}",      "$resolvedValue": "#F6DEDE", "$description": "Error surface, alert icon bg" },
+        "green-default":     { "$value": "{colors.palette.green.100}",   "$resolvedValue": "#04B698" },
+        "green-dark":        { "$value": "{colors.palette.green.130}",   "$resolvedValue": "#005C3E" },
+        "green-light":       { "$value": "{colors.palette.green.20}",    "$resolvedValue": "#CDF0EA", "$description": "Success surface" },
+        "white":             { "$value": "{colors.palette.white}",       "$resolvedValue": "#FFFFFF", "$description": "Card, modal, panel bg" },
+        "level-0":           { "$value": "{colors.palette.lavender.20}", "$resolvedValue": "#F4F7F9", "$description": "Page background" },
+        "level-1":           { "$value": "{colors.palette.blue.20}",     "$resolvedValue": "#E2EDF1", "$description": "Header bg" },
+        "level-2":           { "$value": "{colors.palette.blue.30}",     "$resolvedValue": "#D3E4EA" },
+        "level-3":           { "$value": "{colors.palette.blue.40}",     "$resolvedValue": "#C5DBE3" },
+        "badge":             { "$value": "{colors.palette.red.40}",      "$resolvedValue": "#EDBCBC", "$description": "Badge bg, warning message bg" },
+        "pull-down-menu":    { "$value": "{colors.palette.lavender.30}", "$resolvedValue": "#EFF2F7", "$description": "Dropdown bg, info message bg" },
+        "note":              { "$value": "{colors.palette.yellow.10}",   "$resolvedValue": "#FEF9E4", "$description": "Note card bg" },
+        "note-fold":         { "$value": "{colors.palette.yellow.80}",   "$resolvedValue": "#F9D244", "$description": "Note left border" },
+        "help":              { "$value": "{colors.palette.neutral.80}",  "$resolvedValue": "#4A515B", "$description": "Tooltip bg" },
+        "switch-active":     { "$value": "{colors.palette.blue.100}",    "$resolvedValue": "#6DA6B9", "$description": "Switch ON track" },
+        "switch-inactive":   { "$value": "{colors.palette.lavender.100}","$resolvedValue": "#CAD5E3", "$description": "Switch OFF thumb + border" },
+        "disabled":          { "$value": "{colors.palette.neutral.20}",  "$resolvedValue": "#D2D4D6", "$description": "Disabled element bg" }
+      },
+      "nav": {
+        "$description": "Navigation-specific surface tokens for sidebar menu items.",
+        "inactive-default":  { "$value": "transparent" },
+        "inactive-hover":    { "$value": "{colors.palette.lavender.50}", "$resolvedValue": "#E4EAF1" },
+        "inactive-focus":    { "$value": "{colors.palette.lavender.40}", "$resolvedValue": "#EAEEF4" },
+        "selected-default":  { "$value": "{colors.palette.neutral.90}",  "$resolvedValue": "#343C47" },
+        "selected-hover":    { "$value": "{colors.palette.neutral.80}",  "$resolvedValue": "#4A515B" },
+        "selected-focus":    { "$value": "{colors.palette.neutral.70}",  "$resolvedValue": "#616770" },
+        "active-default":    { "$value": "{colors.palette.yellow.50}",   "$resolvedValue": "#FFE680" },
+        "active-hover":      { "$value": "{colors.palette.yellow.40}",   "$resolvedValue": "#FCE995" },
+        "active-focus":      { "$value": "{colors.palette.yellow.30}",   "$resolvedValue": "#FFF0B3" }
+      },
+      "text": {
+        "$description": "Foreground/text color tokens.",
+        "default":           { "$value": "{colors.palette.neutral.100}", "$resolvedValue": "#1D2632", "$description": "Primary body text — NEVER use #000000" },
+        "help":              { "$value": "{colors.palette.neutral.80}",  "$resolvedValue": "#4A515B", "$description": "Secondary/help text" },
+        "placeholder":       { "$value": "{colors.palette.neutral.60}",  "$resolvedValue": "#777D84", "$description": "Input placeholder" },
+        "disabled-default":  { "$value": "{colors.palette.neutral.60}",  "$resolvedValue": "#777D84", "$description": "Disabled text (on colored bg)" },
+        "disabled-light":    { "$value": "{colors.palette.neutral.20}",  "$resolvedValue": "#D2D4D6", "$description": "Disabled text (on white bg)" },
+        "white":             { "$value": "{colors.palette.white}",       "$resolvedValue": "#FFFFFF", "$description": "Text on dark/colored bg" },
+        "blue-dark":         { "$value": "{colors.palette.blue.120}",    "$resolvedValue": "#316A7D", "$description": "Info text, alert titles" },
+        "green-dark":        { "$value": "{colors.palette.green.130}",   "$resolvedValue": "#005C3E", "$description": "Success text on light bg" },
+        "yellow-dark":       { "$value": "{colors.palette.yellow.130}",  "$resolvedValue": "#875500", "$description": "Dark yellow text" },
+        "red-default":       { "$value": "{colors.palette.red.100}",     "$resolvedValue": "#D15858", "$description": "Error icon color" },
+        "red-dark":          { "$value": "{colors.palette.red.120}",     "$resolvedValue": "#951C1C", "$description": "Error/warning text on light bg" },
+        "menu-active":       { "$value": "{colors.palette.yellow.100}",  "$resolvedValue": "#FFCD00", "$description": "Active menu item label" },
+        "menu-inactive":     { "$value": "{colors.palette.neutral.20}",  "$resolvedValue": "#D2D4D6", "$description": "Inactive menu item label" },
+        "nav-active":        { "$value": "{colors.palette.yellow.50}",   "$resolvedValue": "#FFE680" }
+      },
+      "border": {
+        "$description": "Border/outline tokens.",
+        "default":           { "$value": "{colors.palette.blue.40}",     "$resolvedValue": "#C5DBE3", "$description": "Card dividers, table borders, chip borders" },
+        "neutral-light":     { "$value": "{colors.palette.neutral.20}",  "$resolvedValue": "#D2D4D6" },
+        "neutral-medium":    { "$value": "{colors.palette.neutral.40}",  "$resolvedValue": "#A5A8AD", "$description": "Input default border" },
+        "hover":             { "$value": "{colors.palette.neutral.80}",  "$resolvedValue": "#4A515B", "$description": "Input hover border" },
+        "focus":             { "$value": "{colors.palette.blue.100}",    "$resolvedValue": "#6DA6B9", "$description": "Input focus border, active tab" },
+        "error":             { "$value": "{colors.palette.red.100}",     "$resolvedValue": "#D15858", "$description": "Error input border" },
+        "yellow":            { "$value": "{colors.palette.yellow.100}",  "$resolvedValue": "#FFCD00", "$description": "Active radio/checkbox indicator" },
+        "switch-inactive":   { "$value": "{colors.palette.lavender.100}","$resolvedValue": "#CAD5E3", "$description": "Switch OFF track border" }
+      },
+      "status": {
+        "$description": "Semantic status colors for indicators, badges, charts.",
+        "success":           { "$value": "{colors.palette.green.100}",   "$resolvedValue": "#04B698" },
+        "warning":           { "$value": "{colors.palette.orange.100}",  "$resolvedValue": "#FFA652" },
+        "error":             { "$value": "{colors.palette.red.100}",     "$resolvedValue": "#D15858" },
+        "info":              { "$value": "{colors.palette.blue.100}",    "$resolvedValue": "#6DA6B9" }
+      }
+    },
+
+    "statusPatterns": {
+      "$description": "Pre-composed color combos for status messages and chips. Copy these directly.",
+      "warning":  { "bg": "#EDBCBC", "text": "#951C1C", "icon": "#951C1C", "semanticBg": "surface-badge",          "semanticText": "text-red-dark" },
+      "info":     { "bg": "#EFF2F7", "text": "#316A7D", "icon": "#316A7D", "semanticBg": "surface-pull-down-menu",  "semanticText": "text-blue-dark" },
+      "success":  { "bg": "#CDF0EA", "text": "#005C3E", "icon": "#005C3E", "semanticBg": "surface-green-light",     "semanticText": "text-green-dark" },
+      "error":    { "bg": "#F6DEDE", "text": "#951C1C", "icon": "#D15858", "semanticBg": "surface-red-light",       "semanticText": "text-red-dark" }
+    }
+  },
+
+  "typography": {
+    "$figmaNode": "4345-4080",
+    "fontFamily": {
+      "$value": "'Metropolis UI', 'Inter', Arial, Helvetica, sans-serif",
+      "$description": "Metropolis UI is primary. Inter as fallback for environments without custom fonts (Office, PDF)."
+    },
+    "styles": {
+      "h1":       { "size": { "$value": "45px" }, "lineHeight": { "$value": "52px" }, "weight": { "$value": 500 }, "weightName": "Medium",   "$description": "Page titles in headers" },
+      "h2":       { "size": { "$value": "28px" }, "lineHeight": { "$value": "36px" }, "weight": { "$value": 600 }, "weightName": "SemiBold", "$description": "Section headings (confirmed from Figma)" },
+      "h3":       { "size": { "$value": "22px" }, "lineHeight": { "$value": "28px" }, "weight": { "$value": 600 }, "weightName": "SemiBold", "$description": "Alert/modal titles, card section titles" },
+      "bodyL":    { "size": { "$value": "16px" }, "lineHeight": { "$value": "24px" }, "weight": { "$value": 500 }, "weightName": "Medium",   "$description": "Body text, input values, modal body" },
+      "bodyLBold":{ "size": { "$value": "16px" }, "lineHeight": { "$value": "24px" }, "weight": { "$value": 600 }, "weightName": "SemiBold", "$description": "Message bar headers" },
+      "bodyM":    { "size": { "$value": "14px" }, "lineHeight": { "$value": "20px" }, "weight": { "$value": 500 }, "weightName": "Medium",   "$description": "Secondary body, radio/checkbox labels" },
+      "bodyMBold":{ "size": { "$value": "14px" }, "lineHeight": { "$value": "20px" }, "weight": { "$value": 600 }, "weightName": "SemiBold", "$description": "Button labels, tab labels, card titles" },
+      "bodyS":    { "size": { "$value": "12px" }, "lineHeight": { "$value": "16px" }, "weight": { "$value": 500 }, "weightName": "Medium",   "$description": "Captions, chip labels, tooltip text" },
+      "bodySBold":{ "size": { "$value": "12px" }, "lineHeight": { "$value": "16px" }, "weight": { "$value": 600 }, "weightName": "SemiBold", "$description": "Menu labels, small emphasis" },
+      "bodyXS":   { "size": { "$value": "10px" }, "lineHeight": { "$value": "100%" }, "weight": { "$value": 500 }, "weightName": "Medium",   "$description": "Extra small text" },
+      "bodyXSBold":{ "size": { "$value": "10px" }, "lineHeight": { "$value": "100%" }, "weight": { "$value": 600 }, "weightName": "SemiBold", "$description": "Extra small emphasis" },
+      "badge":    { "size": { "$value": "11px" }, "lineHeight": { "$value": "16px" }, "weight": { "$value": 500 }, "weightName": "Medium",   "$description": "Badge counts only" }
+    },
+    "rules": {
+      "maxWeight": 600,
+      "maxWeightName": "SemiBold",
+      "neverUseBold": true,
+      "minBodySize": "12px",
+      "minBadgeSize": "11px"
+    }
+  },
+
+  "spacing": {
+    "$type": "dimension",
+    "$description": "4px base grid. Only use multiples of 4.",
+    "xs":  { "$value": "4px",  "$description": "Badge padding, compact gaps" },
+    "sm":  { "$value": "8px",  "$description": "Icon-label gaps, pull-down item padding" },
+    "md":  { "$value": "12px", "$description": "Menu item padding, tab top padding" },
+    "lg":  { "$value": "16px", "$description": "Component padding, standard gaps, tab bottom padding" },
+    "xl":  { "$value": "20px", "$description": "Logo padding, medium button h-padding" },
+    "2xl": { "$value": "24px", "$description": "Header padding, card padding, modal padding, large button h-padding" },
+    "3xl": { "$value": "32px", "$description": "Section spacing, sidebar bottom padding" },
+    "4xl": { "$value": "40px", "$description": "Header left padding" }
+  },
+
+  "radii": {
+    "$type": "dimension",
+    "$description": "Border radius tokens.",
+    "xs":   { "$value": "4px",    "$description": "Tooltip, small elements" },
+    "sm":   { "$value": "8px",    "$description": "Segmented control items, pull-down items, message bars, note (right corners)" },
+    "lg":   { "$value": "16px",   "$description": "Cards, headers, modals, panels, alerts, chapter bars" },
+    "xl":   { "$value": "20px",   "$description": "Segmented control container" },
+    "pill": { "$value": "48px",   "$description": "Buttons, badges, chips — signature Blinqx pill shape" },
+    "full": { "$value": "9999px", "$description": "Circular badges, monograms" }
+  },
+
+  "shadows": {
+    "$type": "shadow",
+    "$description": "Three elevation levels. Never use generic CSS shadows.",
+    "card":    { "$value": "0px 1px 2px rgba(0,0,0,0.25), 0px 3px 7px rgba(0,0,0,0.1)",  "$description": "Resting state: cards, panels" },
+    "hovered": { "$value": "0px 2px 5px 1px rgba(0,0,0,0.1), 0px 1px 2px rgba(0,0,0,0.2)", "$description": "Interactive hover: tooltips, hovered cards" },
+    "popup":   { "$value": "0px 1px 3px rgba(0,0,0,0.3), 0px 4px 8px 3px rgba(0,0,0,0.15)", "$description": "Overlays: modals, alerts, dropdowns, date pickers" }
+  },
+
+  "breakpoints": {
+    "$type": "dimension",
+    "$description": "Responsive breakpoints. Stack layouts below lg.",
+    "sm":  { "$value": "640px",  "$description": "Mobile landscape" },
+    "md":  { "$value": "768px",  "$description": "Tablet" },
+    "lg":  { "$value": "1024px", "$description": "Desktop — layouts switch from stacked to split here" },
+    "xl":  { "$value": "1280px", "$description": "Wide desktop" },
+    "2xl": { "$value": "1400px", "$description": "WorQX viewport width" }
+  },
+
+  "motion": {
+    "$type": "transition",
+    "$description": "Animation and transition specs. Keep animations subtle — Blinqx is financial software, not a game.",
+    "hover":       { "$value": "150ms ease", "property": "background-color, border-color, box-shadow", "$description": "All hover state changes" },
+    "focus":       { "$value": "150ms ease", "property": "border-color, box-shadow", "$description": "Focus ring appearance" },
+    "labelFloat":  { "$value": "150ms ease", "property": "transform, font-size, color", "$description": "Floating label animation" },
+    "modalOpen":   { "$value": "200ms ease-out", "property": "opacity, transform", "$description": "Modal/alert fade-in + scale-up" },
+    "modalClose":  { "$value": "150ms ease-in", "property": "opacity, transform", "$description": "Modal/alert fade-out" },
+    "pageEnter":   { "$value": "300ms ease-out", "property": "opacity, transform", "$description": "Page content fade-in on navigation" },
+    "tabSwitch":   { "$value": "150ms ease", "property": "border-color, color", "$description": "Tab active state transition" },
+    "switchToggle":{ "$value": "200ms ease", "property": "background-color, left", "$description": "Switch thumb slide" },
+    "rules": [
+      "Never use bounce or spring easing — too playful for financial context",
+      "Never exceed 300ms for any single transition",
+      "Prefer ease-out for enter, ease-in for exit",
+      "Disable motion if prefers-reduced-motion is set"
+    ]
+  },
+
+  "statePatterns": {
+    "$description": "Standard UI state patterns. Apply these when building pages, not just components.",
+    "loading": {
+      "spinner": "w-8 h-8 border-4 border-[#e5b73b] border-t-transparent rounded-full animate-spin",
+      "skeleton": "bg-[#E2EDF1] animate-pulse rounded-[16px]",
+      "text": "Laden...",
+      "layout": "centered on page bg (#F4F7F9), spinner + text below"
+    },
+    "empty": {
+      "illustration": "Use character_hexagon or character_rectangle from illustrations set",
+      "title": "H3, color N100",
+      "message": "Body L Medium, color N80",
+      "action": "Primary button (optional)",
+      "layout": "centered in content area, max-w 480px"
+    },
+    "error": {
+      "illustration": "UFO with character_hexagon + character_rectangle",
+      "code": "H1, color N100 (e.g. '404')",
+      "message": "Body L Medium, color N80",
+      "action": "Primary button → home/retry",
+      "layout": "centered full viewport, bg L20, max-w 480px"
+    }
+  },
+
+  "sizing": {
+    "$description": "Fixed component dimensions.",
+    "sidebar": { "$value": "80px" },
+    "topNav":  { "$value": "90px", "$description": "WorQX horizontal nav bar height" },
+    "buttonLarge":   { "$value": "48px" },
+    "buttonMedium":  { "$value": "40px" },
+    "buttonSmall":   { "$value": "32px" },
+    "buttonXSmall":  { "$value": "28px" },
+    "inputFloating": { "$value": "56px", "$description": "Large floating label input" },
+    "inputMedium":   { "$value": "44px", "$description": "Medium floating label input" },
+    "switchTrackLg": { "$value": "52px", "$description": "Switch track width (large)" },
+    "switchTrackMd": { "$value": "40px", "$description": "Switch track width (medium)" },
+    "switchThumbLg": { "$value": "24px" },
+    "switchThumbMd": { "$value": "16px" },
+    "icon":          { "$value": "24px" },
+    "iconSmall":     { "$value": "20px" },
+    "iconXSmall":    { "$value": "16px" },
+    "monogramLg":    { "$value": "72px" },
+    "monogramMd":    { "$value": "48px" },
+    "monogramSm":    { "$value": "40px" },
+    "monogramXs":    { "$value": "32px" },
+    "brandLogo":     { "$value": "40px", "$description": "Logo height in sidebar" },
+    "badgeMin":      { "$value": "16px" },
+    "badgeMax":      { "$value": "34px" }
+  },
+
+  "cssVariables": {
+    "$description": "Complete Figma CSS custom property inventory. Extracted via get_variable_defs from all 20 component sections. Use var(--name, fallback).",
+    "$coverage": "67 Figma tokens total. All documented below.",
+    "surface": {
+      "$description": "Background fills. Largest token group — covers components, states, navigation, and overlays.",
+      "--surface/surface-neutral-dark":         "#1D2632",
+      "--surface/surface-neutral-hovered":      "#343C47",
+      "--surface/surface-neutral-focused":      "#4A515B",
+      "--surface/surface-neutral-pressed":      "#4A515B",
+      "--surface/surface-neutral-light":        "#D2D4D6",
+      "--surface/surface-blue-default":         "#6DA6B9",
+      "--surface/surface-blue-dark":            "#316A7D",
+      "--surface/surface-blue-hovered":         "#7CAFC0",
+      "--surface/surface-blue-focused":         "#8AB8C7",
+      "--surface/surface-blue-pressed":         "#8AB8C7",
+      "--surface/surface-blue-light":           "#D3E4EA",
+      "--surface/surface-yellow-default":       "#FFCD00",
+      "--surface/surface-yellow-hovered":       "#FFD631",
+      "--surface/surface-yellow-focused":       "#F9D244",
+      "--surface/surface-yellow-pressed":       "#F9D244",
+      "--surface/surface-yellow-light":         "#FDF4C8",
+      "--surface/surface-red-default":          "#D15858",
+      "--surface/surface-red-light":            "#F6DEDE",
+      "--surface/surface-green-light":          "#CDF0EA",
+      "--surface/surface-white":                "#FFFFFF",
+      "--surface/surface-level-0":              "#F4F7F9",
+      "--surface/surface-level-1":              "#E2EDF1",
+      "--surface/surface-badge":                "#EDBCBC",
+      "--surface/surface-pull-down-menu":       "#EFF2F7",
+      "--surface/surface-pull-down-menu-default":"#EFF2F7",
+      "--surface/surface-pull-down-menu-hovered":"#E4EAF1",
+      "--surface/surface-help":                 "#4A515B",
+      "--surface/surface-switch-active":        "#6DA6B9",
+      "--surface/surface-switch-inactive":      "#CAD5E3",
+      "--surface/surface-disabled":             "#D2D4D6",
+      "--surface/surface-placeholder":          "#777D84",
+      "--surface/surface-border-hovered":       "#E4EAF1",
+      "--surface/surface-border-focused":       "#EAEEF4",
+      "--surface/surface-border-pressed":       "#EAEEF4",
+      "--surface/surface-nav-item-inactive":            "#D2D4D6",
+      "--surface/surface-nav-item-inactive-hovered":    "#E4EAF1",
+      "--surface/surface-nav-item-inactive-focused":    "#EAEEF4",
+      "--surface/surface-nav-item-inactive-pressed":    "#EAEEF4",
+      "--surface/surface-nav-item-selected":            "#343C47",
+      "--surface/surface-nav-item-selected-hovered":    "#4A515B",
+      "--surface/surface-nav-item-selected-focused":    "#616770",
+      "--surface/surface-nav-item-selected-pressed":    "#616770",
+      "--surface/surface-nav-item-active":              "#FFE680",
+      "--surface/surface-nav-item-active-hovered":      "#FCE995",
+      "--surface/surface-nav-item-active-focued":       "#FFF0B3",
+      "--surface/surface-nav-item-active-pressed":      "#FFF0B3"
+    },
+    "text": {
+      "$description": "Foreground/text colors.",
+      "--text/text-default":              "#1D2632",
+      "--text/text-white":                "#FFFFFF",
+      "--text/text-help":                 "#4A515B",
+      "--text/text-placeholder":          "#777D84",
+      "--text/text-disabled-default":     "#777D84",
+      "--text/text-disabled-light":       "#D2D4D6",
+      "--text/text-blue-dark":            "#316A7D",
+      "--text/text-red-dark":             "#951C1C",
+      "--text/text-red-default":          "#D15858",
+      "--text/text-green-dark":           "#005C3E",
+      "--text/text-yellow-dark":          "#875500",
+      "--text/text-menu-label-active":    "#FFCD00",
+      "--text/text-menu-label-inactive":  "#D2D4D6",
+      "--text/text-nav-item-active":      "#FFE680"
+    },
+    "border": {
+      "$description": "Border/outline colors.",
+      "--border/border-default":          "#C5DBE3",
+      "--border/border-neutral-medium":   "#A5A8AD",
+      "--border/border-neutral-dark":     "#4A515B",
+      "--border/border-blue":             "#6DA6B9",
+      "--border/border-error":            "#D15858",
+      "--border/border-yellow":           "#FFCD00",
+      "--border/border-switch-inactive":  "#CAD5E3"
+    },
+    "background": {
+      "--background/background-default": "#F4F7F9"
+    }
+  },
+
+  "shadcnMapping": {
+    "$description": "Maps Blinqx Figma tokens to shadcn/ui CSS variable names. v0 and Cursor expect these names.",
+    "$usage": "Use these in globals.css :root block. Tailwind reads them as bg-background, text-primary, etc.",
+    "variables": {
+      "--background":             { "figmaToken": "B10",  "hex": "#F0F6F8", "tailwind": "bg-background" },
+      "--foreground":             { "figmaToken": "N100", "hex": "#1D2632", "tailwind": "text-foreground" },
+      "--card":                   { "figmaToken": "W100", "hex": "#FFFFFF", "tailwind": "bg-card" },
+      "--card-foreground":        { "figmaToken": "N100", "hex": "#1D2632" },
+      "--popover":                { "figmaToken": "W100", "hex": "#FFFFFF", "tailwind": "bg-popover" },
+      "--popover-foreground":     { "figmaToken": "N100", "hex": "#1D2632" },
+      "--primary":                { "figmaToken": "~Y110","hex": "#E5B73B", "tailwind": "bg-primary", "$note": "Working accent — between Y110-Y100" },
+      "--primary-foreground":     { "figmaToken": "N100", "hex": "#1D2632" },
+      "--secondary":              { "figmaToken": "B30",  "hex": "#D3E4EA", "tailwind": "bg-secondary" },
+      "--secondary-foreground":   { "figmaToken": "N100", "hex": "#1D2632" },
+      "--muted":                  { "figmaToken": "B30",  "hex": "#D3E4EA", "tailwind": "bg-muted" },
+      "--muted-foreground":       { "figmaToken": "~N70", "hex": "#5F6D7A", "tailwind": "text-muted-foreground" },
+      "--accent":                 { "figmaToken": "B30",  "hex": "#D3E4EA", "tailwind": "bg-accent" },
+      "--accent-foreground":      { "figmaToken": "N100", "hex": "#1D2632" },
+      "--destructive":            { "figmaToken": "R100", "hex": "#D15858", "tailwind": "bg-destructive" },
+      "--destructive-foreground": { "figmaToken": "R100", "hex": "#D15858" },
+      "--border":                 { "figmaToken": "B30",  "hex": "#D3E4EA", "tailwind": "border-border" },
+      "--input":                  { "figmaToken": "B30",  "hex": "#D3E4EA", "tailwind": "border-input" },
+      "--ring":                   { "figmaToken": "~B140","hex": "#1A5F5A", "tailwind": "ring-ring" }
+    },
+    "brandExtensions": {
+      "--brand-teal":        { "figmaToken": "~B140", "hex": "#1A5F5A", "$note": "Section headings, focus ring" },
+      "--brand-teal-light":  { "figmaToken": "B100",  "hex": "#6DA6B9", "$note": "Secondary buttons, progress bars" },
+      "--brand-yellow":      { "figmaToken": "~Y110", "hex": "#E5B73B", "$note": "Active nav, primary buttons" },
+      "--brand-yellow-light":{ "figmaToken": "~Y80",  "hex": "#F5D77A", "$note": "Hex inner glow, highlights" },
+      "--brand-gold":        { "figmaToken": "~Y120", "hex": "#D4A84B", "$note": "Yellow button hover" },
+      "--brand-peach":       { "hex": "#F5D5C8", "$note": "Avatar backgrounds" }
+    }
+  },
+
+  "outputFormats": {
+    "$description": "Format-specific token overrides. Read this FIRST to know which tokens apply to your output type.",
+
+    "documents": {
+      "$description": "Use for pptx, pdf, docx, xlsx. Overrides font to Inter, uses simplified color palette.",
+      "$appliesTo": ["pptx", "pdf", "docx", "xlsx", "pptxgenjs", "reportlab", "python-docx"],
+      "typography": {
+        "fontFamily": "Inter",
+        "fallback": "Arial, Helvetica, sans-serif",
+        "whyInter": "Metropolis UI is the brand font but is not available in Office/PDF environments. Inter is the designated fallback.",
+        "styles": {
+          "slideTitle":     { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "28-36pt" },
+          "sectionHeading": { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "20-24pt" },
+          "bodyText":       { "font": "Inter", "weight": 500, "weightName": "Medium",   "sizeRange": "12-16pt" },
+          "caption":        { "font": "Inter", "weight": 400, "weightName": "Regular",  "sizeRange": "10-12pt" },
+          "tableHeader":    { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "11-14pt" },
+          "tableCell":      { "font": "Inter", "weight": 400, "weightName": "Regular",  "sizeRange": "10-12pt" }
+        }
+      },
+      "colors": {
+        "$description": "Simplified role-based palette for documents. Hex WITHOUT # prefix for pptxgenjs.",
+        "headingText":  { "hex": "#1D2632", "pptxgenjs": "1D2632", "role": "All headings and body text" },
+        "bodyText":     { "hex": "#1D2632", "pptxgenjs": "1D2632", "role": "Paragraphs, bullet points" },
+        "secondaryText":{ "hex": "#4A515B", "pptxgenjs": "4A515B", "role": "Captions, footnotes, metadata" },
+        "accent":       { "hex": "#6DA6B9", "pptxgenjs": "6DA6B9", "role": "Borders, icons, highlights, chart elements" },
+        "ctaHighlight": { "hex": "#FFCD00", "pptxgenjs": "FFCD00", "role": "Key callouts — max 1 per slide/page" },
+        "tableHeaderBg":{ "hex": "#E2EDF1", "pptxgenjs": "E2EDF1", "role": "Table header rows" },
+        "tableAltRow":  { "hex": "#F4F7F9", "pptxgenjs": "F4F7F9", "role": "Alternating table rows" },
+        "divider":      { "hex": "#C5DBE3", "pptxgenjs": "C5DBE3", "role": "Horizontal rules, table borders" },
+        "background":   { "hex": "#F4F7F9", "pptxgenjs": "F4F7F9", "role": "Page/slide background" },
+        "cardBox":      { "hex": "#FFFFFF", "pptxgenjs": "FFFFFF", "role": "Content boxes on colored bg" },
+        "success":      { "hex": "#04B698", "pptxgenjs": "04B698", "role": "Positive indicators" },
+        "warning":      { "hex": "#FFA652", "pptxgenjs": "FFA652", "role": "Attention indicators" },
+        "error":        { "hex": "#D15858", "pptxgenjs": "D15858", "role": "Negative indicators" }
+      },
+      "pptxgenjs": {
+        "$description": "Copy-paste constants for pptxgenjs. Hex values without # prefix.",
+        "colors": {
+          "primary": "6DA6B9", "cta": "FFCD00", "success": "04B698", "warning": "FFA652",
+          "danger": "D15858", "dark": "1D2632", "help": "4A515B", "placeholder": "777D84",
+          "pageBg": "F4F7F9", "headerBg": "E2EDF1", "cardBg": "FFFFFF", "border": "C5DBE3"
+        },
+        "font": { "heading": "Inter", "body": "Inter" }
+      },
+      "chartColors": {
+        "$description": "Ordered palette for charts. Template uses a teal/green gradient for multi-series data visualization.",
+        "series": [
+          { "hex": "#CDF0EA", "pptxgenjs": "CDF0EA", "label": "Series 1 — Light green" },
+          { "hex": "#6DA6B9", "pptxgenjs": "6DA6B9", "label": "Series 2 — Teal blue" },
+          { "hex": "#04B698", "pptxgenjs": "04B698", "label": "Series 3 — Green" },
+          { "hex": "#005C3E", "pptxgenjs": "005C3E", "label": "Series 4 — Dark green" },
+          { "hex": "#FFCD00", "pptxgenjs": "FFCD00", "label": "Series 5 — Yellow accent" },
+          { "hex": "#D15858", "pptxgenjs": "D15858", "label": "Series 6 — Red (contrast)" },
+          { "hex": "#316A7D", "pptxgenjs": "316A7D", "label": "Series 7 — Dark teal" },
+          { "hex": "#FFA652", "pptxgenjs": "FFA652", "label": "Series 8 — Orange" }
+        ],
+        "rules": [
+          "Default charts use teal/green gradient (series 1-4) — confirmed from official .potx template",
+          "For 2-series: use #6DA6B9 + #04B698 (teal pair)",
+          "For positive/negative: use green #04B698 + red #D15858",
+          "Add yellow #FFCD00 only when 5+ series needed"
+        ]
+      },
+      "tableStyle": {
+        "$description": "Table formatting for documents.",
+        "headerBg": { "hex": "#E2EDF1", "pptxgenjs": "E2EDF1" },
+        "headerText": { "hex": "#1D2632", "pptxgenjs": "1D2632", "weight": 600 },
+        "altRowBg": { "hex": "#F4F7F9", "pptxgenjs": "F4F7F9" },
+        "cellText": { "hex": "#1D2632", "pptxgenjs": "1D2632", "weight": 400 },
+        "borderColor": { "hex": "#C5DBE3", "pptxgenjs": "C5DBE3" },
+        "borderWidth": "0.5pt",
+        "cellPadding": { "top": "4pt", "right": "8pt", "bottom": "4pt", "left": "8pt" },
+        "headerHeight": "32pt",
+        "rowHeight": "24pt"
+      },
+      "logo": {
+        "$description": "Logo placement in documents.",
+        "position": "top-right or bottom-left of slide/page",
+        "height": "24pt",
+        "minClearSpace": "12pt",
+        "color": "dark (#1D2632) on light backgrounds, white (#FFFFFF) on dark backgrounds",
+        "asset": "assets/blinqx-logo.svg"
+      },
+      "icons": {
+        "$description": "Icon usage in documents.",
+        "style": "Outline/line style, not filled",
+        "size": "16pt inline with text, 24pt standalone",
+        "color": "Match text color (#1D2632) or accent (#6DA6B9)",
+        "source": "Use Lucide or Heroicons (outline) as closest match to Blinqx icon set"
+      },
+      "slideLayouts": {
+        "$description": "Standard slide compositions for pptx.",
+        "titleSlide": {
+          "bg": "F4F7F9",
+          "titleFont": "Inter SemiBold 36pt",
+          "titleColor": "1D2632",
+          "subtitleFont": "Inter Medium 16pt",
+          "subtitleColor": "4A515B",
+          "accentBar": "6DA6B9, 4pt height, bottom of title area",
+          "logoPosition": "bottom-right"
+        },
+        "contentSlide": {
+          "bg": "F4F7F9",
+          "titleFont": "Inter SemiBold 24pt",
+          "titleColor": "1D2632",
+          "bodyFont": "Inter Medium 14pt",
+          "bodyColor": "1D2632",
+          "contentArea": "white box with 16pt rounded corners and card shadow"
+        },
+        "sectionDivider": {
+          "bg": "6DA6B9",
+          "titleFont": "Inter SemiBold 36pt",
+          "titleColor": "FFFFFF",
+          "subtitleFont": "Inter Medium 16pt",
+          "subtitleColor": "E2EDF1"
+        },
+        "twoColumn": {
+          "bg": "F4F7F9",
+          "split": "50-50 or 60-40",
+          "gap": "16pt between columns"
+        }
+      },
+      "presentationDesign": {
+        "$description": "Visual design language from the official Blinqx .potx template. AI tools: follow these patterns when generating presentations.",
+        "$source": "Blinqx_Template-Basic.potx (41 slides, 3 theme variants)",
+        "themes": {
+          "dark":   { "bg": "#1D2632", "text": "#FFFFFF", "accent": "#FFCD00", "usage": "Title slides, section dividers, icon grids, closing slides" },
+          "yellow": { "bg": "#FFCD00", "text": "#1D2632", "accent": "#1D2632", "usage": "Emphasis slides, quotes, timelines, KPI displays" },
+          "light":  { "bg": "#FFFFFF", "text": "#1D2632", "accent": "#FFCD00", "usage": "Content slides, charts, two-column layouts, image+text" }
+        },
+        "hexagonMotif": {
+          "$description": "The yellow hexagon is the core visual motif in ALL Blinqx presentations.",
+          "iconContainer": "Colored hexagon (B100/Y100/G100) with dark icon inside — used on dark slides",
+          "decorative": "Oversized hexagon outlines (Y100 stroke) on closing slides",
+          "floating": "Small solid yellow hexagons near images/quotes as visual accent",
+          "timeline": "White hexagons with icons as timeline nodes on dashed connector lines",
+          "kpiShape": "Chevron/pentagon-shaped cards for stat callouts"
+        },
+        "labelTags": {
+          "yellow": { "bg": "#FFCD00", "text": "#1D2632", "usage": "Section subtitles, quote attributions" },
+          "black":  { "bg": "#1D2632", "text": "#FFFFFF", "usage": "Category labels, overlay captions" }
+        },
+        "rules": [
+          "Alternate themes between consecutive slides — never repeat same background",
+          "Yellow background = emphasis — use for the most important content",
+          "Include hexagon motif on every 2-3 slides minimum",
+          "Titles are oversized (44pt+) for visual impact",
+          "Minimal text per slide — visuals and headings carry the message",
+          "Charts use teal/green gradient palette, not primary blue",
+          "Logo always top-right: dark variant on light/yellow, light variant on dark"
+        ]
+      },
+      "rules": [
+        "Use Inter — never Metropolis UI (not available in Office/PDF environments)",
+        "Max 3 colors per slide: text + accent + 1 status color",
+        "Max 1 yellow highlight per slide/page",
+        "Max weight is SemiBold (600) — never Bold (700)",
+        "Use #1D2632 for all text — never pure black #000000",
+        "Hex values for pptxgenjs must NOT include # prefix"
+      ]
+    },
+
+    "prototype": {
+      "$description": "Use for React, HTML, CSS, Tailwind, v0, Cursor, Claude code generation.",
+      "$appliesTo": ["react", "html", "css", "tailwind", "nextjs", "vue", "svelte", "v0", "cursor"],
+      "typography": {
+        "fontFamily": "'Metropolis UI', 'Inter', Arial, Helvetica, sans-serif",
+        "$note": "Declare Metropolis UI first, Inter as system fallback"
+      },
+      "colors": {
+        "$note": "Use the full semantic token system. Reference: colors.semantic in this file.",
+        "cssVarSyntax": "var(--surface/surface-blue-default, #6DA6B9)",
+        "tailwindSyntax": "bg-[var(--surface/surface-blue-default,#6da6b9)]"
+      },
+      "components": {
+        "$note": "Load references/components.json for full component specs with Tailwind code examples."
+      },
+      "rules": [
+        "Use Metropolis UI as primary font, Inter as fallback",
+        "Use semantic CSS variable names from cssVariables section",
+        "Use full palette scales — not simplified document colors",
+        "Buttons must be pill-shaped (border-radius: 48px)",
+        "Inputs use bottom-border only — never fully bordered boxes",
+        "Every interactive element needs 5 states: enabled, hovered, focused, pressed, disabled"
+      ]
+    }
+  },
+
+  "forbidden": {
+    "$description": "Colors and patterns that must NEVER be used.",
+    "colors": [
+      { "hex": "#000000", "reason": "Use #1D2632 (N100) instead of pure black" },
+      { "hex": "#007776", "reason": "Blis Digital brand color — wrong brand" },
+      { "hex": "#00CDB6", "reason": "Blis Digital brand color — wrong brand" }
+    ],
+    "patterns": [
+      { "pattern": "Yellow text on white background", "reason": "1.3:1 contrast — invisible" },
+      { "pattern": "White text on yellow background", "reason": "1.3:1 contrast — invisible" },
+      { "pattern": "font-weight: 700 or bold", "reason": "Max weight is 600 (SemiBold)" },
+      { "pattern": "Square buttons (border-radius < 48px)", "reason": "Buttons must be pill-shaped" },
+      { "pattern": "Fully bordered inputs", "reason": "Inputs use bottom-border-only" }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- Blinqx Logo: Black hexagon + BLINQX wordmark -->
+  <!-- Source: Figma node 3160:856, file F5hNn1cAwIeKGJgEFJV64q -->
+  <!-- Note: This is a placeholder. Replace with the actual exported SVG from Figma. -->
+  <g fill="#000000">
+    <!-- Hexagon mark -->
+    <path d="M24 4L42.5 14.7v21.6L24 47 5.5 36.3V14.7L24 4z"/>
+    <!-- BLINQX wordmark (simplified) -->
+    <text x="54" y="32" font-family="'Metropolis UI', 'Inter', Arial, sans-serif" font-weight="600" font-size="24" fill="#000000">BLINQX</text>
+  </g>
+</svg>
