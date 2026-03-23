@@ -36,8 +36,8 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 |---|---|---|---|
 | **pptx** | → `references/pptx-guide.md` | Metropolis (embedded in .potx) | `design-tokens.json → outputFormats.documents` |
 | **pdf / docx / xlsx** | → (use doc palette below) | Inter (Metropolis not embeddable) | `design-tokens.json → outputFormats.documents` |
-| **React / Next.js prototype** | → `references/prototype-guide.md` | Metropolis UI → Inter fallback | `design-tokens.json → colors.semantic` |
-| **HTML / Tailwind one-off** | → `references/prototype-guide.md` | Metropolis UI → Inter fallback | `design-tokens.json → cssVariables` |
+| **React / Next.js prototype** | → `references/prototype/guide.md` | Metropolis UI → Inter fallback | `design-tokens.json → colors.semantic` |
+| **HTML / Tailwind one-off** | → `references/prototype/guide.md` | Metropolis UI → Inter fallback | `design-tokens.json → cssVariables` |
 
 **Step 2 — Apply these rules to EVERY output:**
 1. Text color is always `#1D2632` — never `#000000` (except: presentation slide backgrounds may use `#000000` per theme)
@@ -57,16 +57,16 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 | File | When to load |
 |------|-------------|
 | `references/pptx-guide.md` | **Presentations** — template layouts, build approach, design language |
-| `references/prototype-guide.md` | **Web/app** — tech stack, components, layout patterns |
+| `references/prototype/guide.md` | **Web/app** — tech stack, components, layout patterns |
 | `references/brand-identity.md` | **Read first** — design rationale, do's/don'ts, decision tree |
 | `references/design-tokens.json` | **Always** — tokens, semantic mappings, format routing |
 | `references/components.json` | **Always** — component specs, Figma links, shadcn mapping |
-| `references/component-patterns.md` | Copy-paste TSX examples for all 14 component types |
-| `references/page-templates.md` | Page layout templates with breakpoints |
-| `references/project-setup-guide.md` | Next.js + shadcn project scaffolding |
-| `references/globals-css-template.md` | Complete `app/globals.css` with all CSS variables |
-| `references/shadcn-config-template.md` | `components.json` + PostCSS config |
-| `references/ai-coding-rules.md` | Rule set (~150 rules) for AI code generators |
+| `references/prototype/component-patterns.md` | Copy-paste TSX examples for all 14 component types |
+| `references/prototype/page-templates.md` | Page layout templates with breakpoints |
+| `references/prototype/project-setup-guide.md` | Next.js + shadcn project scaffolding |
+| `references/prototype/globals-css-template.md` | Complete `app/globals.css` with all CSS variables |
+| `references/prototype/shadcn-config-template.md` | `components.json` + PostCSS config |
+| `references/prototype/ai-coding-rules.md` | Rule set (~150 rules) for AI code generators |
 
 ---
 

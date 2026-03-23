@@ -49,7 +49,7 @@ export default config
 
 ## 4. Copy globals.css
 
-Replace `app/globals.css` with the template from `references/globals-css-template.md`.
+Replace `app/globals.css` with the template from `globals-css-template.md` (in this folder).
 
 ## 5. Set Up Root Layout
 
@@ -124,7 +124,7 @@ export function cn(...inputs: ClassValue[]) {
 
 ## 7. Initialize shadcn
 
-Create `components.json` at the project root (see `references/shadcn-config-template.md`), then:
+Create `components.json` at the project root (see `shadcn-config-template.md` in this folder), then:
 
 ```bash
 # Add commonly needed components
