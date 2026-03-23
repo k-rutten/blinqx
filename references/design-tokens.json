@@ -512,7 +512,7 @@
 
     "documents": {
       "$description": "Use for pptx, pdf, docx, xlsx. Overrides font to Inter, uses simplified color palette.",
-      "$appliesTo": ["pptx", "pdf", "docx", "xlsx", "pptxgenjs", "reportlab", "python-docx"],
+      "$appliesTo": ["pptx", "pdf", "docx", "xlsx", "python-pptx", "reportlab", "python-docx"],
       "typography": {
         "fontFamily": "Inter",
         "fallback": "Arial, Helvetica, sans-serif",
@@ -527,7 +527,7 @@
         }
       },
       "colors": {
-        "$description": "Simplified role-based palette for documents. Hex WITHOUT # prefix for pptxgenjs.",
+        "$description": "Simplified role-based palette for documents. 'pptxgenjs' key = hex without # prefix (legacy, still useful for raw hex).",
         "headingText":  { "hex": "#1D2632", "pptxgenjs": "1D2632", "role": "All headings and body text" },
         "bodyText":     { "hex": "#1D2632", "pptxgenjs": "1D2632", "role": "Paragraphs, bullet points" },
         "secondaryText":{ "hex": "#4A515B", "pptxgenjs": "4A515B", "role": "Captions, footnotes, metadata" },
@@ -543,7 +543,7 @@
         "error":        { "hex": "#D15858", "pptxgenjs": "D15858", "role": "Negative indicators" }
       },
       "pptxgenjs": {
-        "$description": "Copy-paste constants for pptxgenjs. Hex values without # prefix.",
+        "$description": "Copy-paste hex constants (without # prefix). Legacy naming; values still useful for any tool needing raw hex.",
         "colors": {
           "primary": "6DA6B9", "cta": "FFCD00", "success": "04B698", "warning": "FFA652",
           "danger": "D15858", "dark": "1D2632", "help": "4A515B", "placeholder": "777D84",
@@ -633,7 +633,7 @@
         "$description": "Visual design language from the official Blinqx .potx template. AI tools: follow these patterns when generating presentations.",
         "$source": "Blinqx_Template-Basic.potx (41 slides, 3 theme variants)",
         "themes": {
-          "dark":   { "bg": "#1D2632", "text": "#FFFFFF", "accent": "#FFCD00", "usage": "Title slides, section dividers, icon grids, closing slides" },
+          "dark":   { "bg": "#000000", "bgAlt": "#1D2632", "text": "#FFFFFF", "accent": "#FFCD00", "usage": "Title slides, section dividers, icon grids, closing slides", "$note": "Most dark layouts use #000000 (scheme:tx1). #1D2632 (navy) used for accent fills (snip1Rect cards, title slide bg, decorative shapes)" },
           "yellow": { "bg": "#FFCD00", "text": "#1D2632", "accent": "#1D2632", "usage": "Emphasis slides, quotes, timelines, KPI displays" },
           "light":  { "bg": "#FFFFFF", "text": "#1D2632", "accent": "#FFCD00", "usage": "Content slides, charts, two-column layouts, image+text" }
         },
@@ -646,8 +646,9 @@
           "kpiShape": "Chevron/pentagon-shaped cards for stat callouts"
         },
         "labelTags": {
-          "yellow": { "bg": "#FFCD00", "text": "#1D2632", "usage": "Section subtitles, quote attributions" },
-          "black":  { "bg": "#1D2632", "text": "#FFFFFF", "usage": "Category labels, overlay captions" }
+          "$shape": "snip1Rect (prstGeom='snip1Rect' — Rectangle: Single Corner Snipped), NOT plain rectangles",
+          "yellow": { "bg": "#FFCD00", "text": "#1D2632", "shape": "snip1Rect", "usage": "Section subtitles, quote attributions" },
+          "black":  { "bg": "#1D2632", "text": "#FFFFFF", "shape": "snip1Rect", "usage": "Category labels, overlay captions" }
         },
         "rules": [
           "Alternate themes between consecutive slides — never repeat same background",
@@ -660,12 +661,12 @@
         ]
       },
       "rules": [
-        "Use Inter — never Metropolis UI (not available in Office/PDF environments)",
+        "Presentations (.pptx): use Metropolis (embedded in .potx template via python-pptx). PDF/docx/xlsx: use Inter (Metropolis not embeddable)",
         "Max 3 colors per slide: text + accent + 1 status color",
         "Max 1 yellow highlight per slide/page",
         "Max weight is SemiBold (600) — never Bold (700)",
-        "Use #1D2632 for all text — never pure black #000000",
-        "Hex values for pptxgenjs must NOT include # prefix"
+        "Use #1D2632 for body text. Dark slide backgrounds use #000000 (scheme:tx1, see presentationDesign.themes.dark)",
+        "Build presentations from .potx template using python-pptx — never recreate slides from scratch"
       ]
     },
 

@@ -34,12 +34,13 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 
 | Creating... | Font | Color source | Component source | Setup templates |
 |---|---|---|---|---|
-| **pptx / pdf / docx / xlsx** | Inter (not Metropolis) | `design-tokens.json → outputFormats.documents` | N/A — use doc color roles | N/A |
+| **pptx** | Metropolis (fallback: Inter/Calibri) | `design-tokens.json → outputFormats.documents` | N/A — use template layouts | See A5 |
+| **pdf / docx / xlsx** | Inter (Metropolis not embeddable) | `design-tokens.json → outputFormats.documents` | N/A — use doc color roles | N/A |
 | **React / Next.js prototype** | Metropolis UI → Inter fallback | `design-tokens.json → colors.semantic` | `components.json` | `globals-css-template.md`, `project-setup-guide.md` |
 | **HTML / Tailwind one-off** | Metropolis UI → Inter fallback | `design-tokens.json → cssVariables` | `components.json → codeExample.tailwind` | N/A |
 
 **Step 2 — Apply these rules to EVERY output:**
-1. Text color is always `#1D2632` — never `#000000`
+1. Text color is always `#1D2632` — never `#000000` (except: presentation slide backgrounds may use `#000000` per theme, see A4)
 2. Max font weight is SemiBold (600) — never Bold (700)
 3. Yellow (`#FFCD00`) is CTA-only — max 1 per view/slide
 4. Buttons are pill-shaped (radius 48px) — never square
@@ -98,47 +99,50 @@ Full component specs: `references/components.json`
 
 # Section A — Documents (pptx, pdf, docx, xlsx)
 
-**When generating presentations, reports, PDFs, or spreadsheets, use Inter and the simplified document palette.**
+**When generating presentations, use Metropolis (fallback: Inter/Calibri) and the template-first approach (see A5). For reports, PDFs, and spreadsheets, use Inter and the simplified document palette.**
 
 For machine-readable tokens: `design-tokens.json → outputFormats.documents`
 
 ## A1. Document Color Palette
 
-| Role | Hex | pptxgenjs | When to use |
-|------|-----|-----------|-------------|
-| Heading/body text | `#1D2632` | `1D2632` | All text |
-| Secondary text | `#4A515B` | `4A515B` | Captions, footnotes |
-| Accent | `#6DA6B9` | `6DA6B9` | Borders, icons, charts |
-| CTA highlight | `#FFCD00` | `FFCD00` | Max 1 per slide/page |
-| Table header bg | `#E2EDF1` | `E2EDF1` | Header rows |
-| Table alt row | `#F4F7F9` | `F4F7F9` | Alternating rows |
-| Border/divider | `#C5DBE3` | `C5DBE3` | Rules, table borders |
-| Background | `#F4F7F9` | `F4F7F9` | Slide/page bg |
-| Success | `#04B698` | `04B698` | Positive indicators |
-| Warning | `#FFA652` | `FFA652` | Attention indicators |
-| Error | `#D15858` | `D15858` | Negative indicators |
+| Role | Hex | When to use |
+|------|-----|-------------|
+| Heading/body text | `#1D2632` | All text (docs). Presentations: white on dark, navy on light/yellow |
+| Secondary text | `#4A515B` | Captions, footnotes |
+| Accent | `#6DA6B9` | Borders, icons, charts |
+| CTA highlight | `#FFCD00` | Max 1 per slide/page |
+| Table header bg | `#E2EDF1` | Header rows |
+| Table alt row | `#F4F7F9` | Alternating rows |
+| Border/divider | `#C5DBE3` | Rules, table borders |
+| Background | `#F4F7F9` | Page bg (docs). Presentations: see A4 theme colors |
+| Success | `#04B698` | Positive indicators |
+| Warning | `#FFA652` | Attention indicators |
+| Error | `#D15858` | Negative indicators |
 
 ## A2. Document Typography
 
-| Element | Font | Weight | Size |
-|---------|------|--------|------|
-| Slide title | Inter | SemiBold (600) | 28-36pt |
-| Section heading | Inter | SemiBold (600) | 20-24pt |
-| Body text | Inter | Medium (500) | 12-16pt |
-| Caption | Inter | Regular (400) | 10-12pt |
-| Table header | Inter | SemiBold (600) | 11-14pt |
-| Table cell | Inter | Regular (400) | 10-12pt |
+| Element | Font | Weight | Size | Notes |
+|---------|------|--------|------|-------|
+| Slide title | Metropolis | Thin/Regular | 60pt | Presentations only (see A4) |
+| Slide heading | Metropolis | SemiBold (600) | 36-45pt | Presentations only |
+| Slide body | Metropolis | Regular (400) | 14-16pt | Presentations only |
+| Slide tag/label | Metropolis | SemiBold (600) | 12-14pt | Inside snip1Rect shapes |
+| Report/doc heading | Inter | SemiBold (600) | 20-24pt | PDF, docx, xlsx |
+| Report/doc body | Inter | Medium (500) | 12-16pt | PDF, docx, xlsx |
+| Caption | Inter | Regular (400) | 10-12pt | All formats |
+| Table header | Inter | SemiBold (600) | 11-14pt | All formats |
+| Table cell | Inter | Regular (400) | 10-12pt | All formats |
 
-**Why Inter?** Metropolis UI is the brand font but not available in Office/PDF. Inter is the designated fallback.
+**Font logic**: The .potx template embeds Metropolis (Semibold + Thin). python-pptx preserves this when loading the template. For pdf/docx/xlsx where Metropolis is not embeddable, use Inter as fallback.
 
 ## A3. Document Rules
 
 - Max 3 colors per slide: text + accent + 1 status color
 - Max 1 yellow highlight per slide/page
 - Max weight SemiBold (600) — never Bold (700)
-- Use `#1D2632` for text — never `#000000`
-- pptxgenjs hex values must NOT include `#` prefix
-- Chart colors (in order): blue → yellow → green → orange → red → dark blue → dark yellow → dark green
+- Text color: `#1D2632` for body text. Exception: dark slide backgrounds use `#000000` (scheme:tx1), see A4
+- **Presentations**: Always use python-pptx with the .potx template (see A5). Never recreate slides from scratch
+- Chart colors (in order): teal/green palette for presentations (#CDF0EA, #6DA6B9, #04B698, #005C3E), standard palette for documents
 - Full chart palette + table specs + slide layouts: `design-tokens.json → outputFormats.documents`
 
 ---
@@ -267,132 +271,226 @@ Dashboard:  [KPI cards 3-col] + [Main 70% | Side 30%]
 List/Table: [Toolbar: search + filters] + [Table card]
 Detail:     [Content 60-70%] + [Side panel 30-40%]
 Form:       [Form card, max-w 640px, centered]
-# Section A — Documents (pptx, pdf, docx, xlsx)
+```
 
-**When generating presentations, reports, PDFs, or spreadsheets, use Inter and the simplified document palette.**
+## A4. Presentation Design Language (from official Blinqx_Template-Basic.potx)
 
-For machine-readable tokens: `design-tokens.json → outputFormats.documents`
+> **CRITICAL**: Always build presentations FROM the .potx template, never recreate slides from scratch.
+> The template file is `Blinqx_Template-Basic.potx` (41 example slides, 87 layouts).
+> Use python-pptx to load it, select slides, and fill placeholders. See A5 for the approach.
 
-## A1. Document Color Palette
+### Theme Color Scheme (from theme1.xml)
 
-| Role | Hex | pptxgenjs | When to use |
-|------|-----|-----------|-------------|
-| Heading/body text | `#1D2632` | `1D2632` | All text |
-| Secondary text | `#4A515B` | `4A515B` | Captions, footnotes |
-| Accent | `#6DA6B9` | `6DA6B9` | Borders, icons, charts |
-| CTA highlight | `#FFCD00` | `FFCD00` | Max 1 per slide/page |
-| Table header bg | `#E2EDF1` | `E2EDF1` | Header rows |
-| Table alt row | `#F4F7F9` | `F4F7F9` | Alternating rows |
-| Border/divider | `#C5DBE3` | `C5DBE3` | Rules, table borders |
-| Background | `#F4F7F9` | `F4F7F9` | Slide/page bg |
-| Success | `#04B698` | `04B698` | Positive indicators |
-| Warning | `#FFA652` | `FFA652` | Attention indicators |
-| Error | `#D15858` | `D15858` | Negative indicators |
+| Scheme slot | Hex | Role |
+|-------------|-----|------|
+| dk1 (tx1) | `#000000` | **Black** — primary dark slide backgrounds |
+| lt1 (bg1) | `#FFFFFF` | White — light text on dark, light backgrounds |
+| dk2 (tx2) | `#1D2632` | **Navy** — accent dark fills, snip1Rect cards, title slide bg |
+| lt2 (bg2) | `#FFCD00` | **Yellow** — primary accent, yellow slides, tags |
+| accent1 | `#EEE3C3` | Cream — decorative fills |
+| accent2 | `#CAD5E3` | Light blue — decorative blob shapes (closing slide) |
+| accent3 | `#6DA6B9` | **Blue** — hexagon fill, chart color |
+| accent4 | `#04B698` | **Green** — hexagon fill, chart color |
+| accent5 | `#FFF5CC` | Light yellow |
+| accent6 | `#FFCD00` | Yellow (duplicate) |
 
-## A2. Document Typography
-
-| Element | Font | Weight | Size |
-|---------|------|--------|------|
-| Slide title | Inter | SemiBold (600) | 28-36pt |
-| Section heading | Inter | SemiBold (600) | 20-24pt |
-| Body text | Inter | Medium (500) | 12-16pt |
-| Caption | Inter | Regular (400) | 10-12pt |
-| Table header | Inter | SemiBold (600) | 11-14pt |
-| Table cell | Inter | Regular (400) | 10-12pt |
-
-**Why Inter?** Metropolis UI is the brand font but not available in Office/PDF. Inter is the designated fallback.
-
-## A3. Document Rules
-
-- Max 3 colors per slide: text + accent + 1 status color
-- Max 1 yellow highlight per slide/page
-- Max weight SemiBold (600) — never Bold (700)
-- Use `#1D2632` for text — never `#000000`
-- pptxgenjs hex values must NOT include `#` prefix
-- Chart colors (in order): blue → yellow → green → orange → red → dark blue → dark yellow → dark green
-- Full chart palette + table specs + slide layouts: `design-tokens.json → outputFormats.documents`
-
-## A4. Presentation Design Language (from official .potx template)
+**IMPORTANT CORRECTION**: Dark slide backgrounds are `#000000` (BLACK, scheme:tx1), NOT `#1D2632` (navy). Navy is used as fill color for accent shapes (snip1Rect cards, title slide background, decorative "Graphic 8" blobs). The .potx XML confirms: most dark layouts reference `scheme:tx1` (black) for background, while `scheme:tx2` (navy) is used for specific layouts like title slides and closing slides.
 
 ### Three Slide Themes
-The template alternates between three background themes:
-1. **Dark** — bg `#1D2632` (navy), white text, yellow (#FFCD00) accents
-2. **Yellow** — bg `#FFCD00`, black (#1D2632) text, black accents
-3. **Light** — bg white or cream (#FEF9E4), black text, yellow accents
 
-Use dark for: title slides, section dividers, icon grids, closing slides
-Use yellow for: emphasis slides, quote slides, timelines, KPI slides, section dividers (alternate)
-Use light for: content slides, charts, two-column layouts, image+text slides
+1. **Dark** — bg black (#000000) or navy (#1D2632), white/yellow text, yellow accents
+2. **Yellow** — bg #FFCD00, navy (#1D2632) text, black/white accents
+3. **Light** — bg white (#FFFFFF) or cream, navy text, yellow accents
 
 ### Hexagon Motif
-The yellow hexagon is the core visual element across ALL presentations:
-- **Icon containers**: Icons sit inside colored hexagons (blue #6DA6B9, yellow #FFCD00, green #04B698) on dark slides
-- **Decorative elements**: Oversized hexagon outlines (#FFCD00 stroke) on closing slides
-- **Small floating hexagons**: Solid yellow hexagons as decorative accents near images/quotes
-- **Timeline nodes**: White hexagons with icons on dashed connector lines
-- **KPI shapes**: Chevron/pentagon shapes for stat callouts (not standard rectangles)
 
-### Label Tags
-Two tag styles for subtitles and category markers:
-- **Yellow tag**: Yellow (#FFCD00) background, black text — used for section subtitles, attributions
-- **Black tag**: Black (#1D2632) background, white text — used for category labels, overlay captions
+The Blinqx hexagon (logo shape) is the core visual element. In the template, hexagons use `prstGeom="hexagon"` rotated 90° (pointy-top orientation):
 
-### Quote Slides
-- Large quotation marks (") as decorative element, black, top-left of quote text
-- Quote text: large (28-36pt), black, bold/semibold
-- Attribution: "- Naam & Achternaam" in yellow tag below quote
-- Image placeholder on left (with small yellow hexagon floating near top)
+- **Icon containers**: 3 colored hexagons (blue #6DA6B9, navy #1D2632, green #04B698) on dark slides. Size ~2.6"×2.3", with icon images (1.575"×1.575") centered inside. (Layout 34, slide 16)
+- **Photo placeholders**: Hexagon shapes with `pattFill pct5` (5% crosshatch pattern). The diagonal-line/dot pattern IS the placeholder indicator — users replace with actual photos.
+- **Decorative elements**: Oversized hexagon outlines (#FFCD00 stroke) on closing slides, small filled hexagons as accents.
+- **Timeline nodes**: White hexagon freeform shapes (~1.3"×1.5") with icon images (~0.84"×0.84") centered inside.
+- **"Graphic 8" blobs**: Large custom-geometry pentagon-like shapes used as decorative overlapping background elements. Fill: accent2 (#CAD5E3) with ~35% alpha. Found on closing slides, content slides.
 
-### Chart/Data Slides
-- Charts use a teal/green gradient palette: light sage → medium teal → deep teal → dark teal
-- NOT the blue primary palette — charts are distinctively green-family
-- Chart colors (from template): approximately #CDF0EA, #6DA6B9, #04B698, #005C3E
-- Pie charts: exploded segments, labels inside
-- Bar/column charts: horizontal preferred for comparison
-- Area charts: stacked, green gradient series
+### Label Tags (snip1Rect)
 
-### Slide Layouts (from template)
-| Layout | Theme | Description |
-|--------|-------|-------------|
-| Title (split) | Dark+Light | Left half dark navy, right half diagonal lines. Title large, yellow subtitle tag. |
-| Title (split alt) | Light+Yellow | Left half diagonal lines, right half yellow. Title large, black subtitle tag. |
-| Section divider (dark) | Dark | Full navy bg, repeating text watermark ("AMBITIOUS SMART REBELS HUMAN CENTERED"), centered yellow title |
-| Section divider (yellow) | Yellow | Full yellow bg, same watermark, centered black title |
-| Content (white) | Light | White bg, centered title, body text two-column or full-width |
-| Content (yellow highlight) | Yellow+Light | Yellow tag above title, two-column: text left + bullets right |
-| Quote (light) | Light | Image left, large quote right, yellow attribution tag |
-| Quote (yellow) | Yellow | Yellow bg, image right, large quote left, black attribution tag |
-| Data/KPI (white) | Light | Large chevron-shaped yellow KPI cards in 2x3 or 3-col grid |
-| Data/Chart (white) | Light | Chart left or center, text right, yellow category tag |
-| Icon grid (dark) | Dark | 3-4 colored hexagons in row, icon inside each, labels below |
-| Timeline (light) | Light | Dashed line with hexagon nodes, numbered yellow tags, descriptions below |
-| Timeline (yellow) | Yellow | Same layout, white hexagons, black end-marker hexagon |
-| Image+text (light) | Light | Image placeholder left, text block right |
-| Device mockup (light) | Light | Laptop/tablet mockup with screenshot, text left |
-| Closing (yellow) | Yellow | Yellow bg with overlapping hexagon shapes, logo top-left, "Thank you" |
-| Closing (dark) | Dark | Navy/grey bg with yellow hexagon outlines, logo top-left, "Thank you" white text |
+Tags use `prstGeom="snip1Rect"` (Rectangle: Single Corner Snipped), NOT plain rectangles:
 
-### Logo Placement
-- **Position**: always top-right corner
-- **Variant**: dark logo (hexagon + "BLINQX" wordmark) on light/yellow slides, yellow+white on dark slides
-- **Size**: approximately 120×40px equivalent
+- **Yellow tag**: Fill #FFCD00, navy text — for subtitles, section labels
+- **Black/navy tag**: Fill #1D2632 or #000000, white text — for category labels, captions
+- **KPI cards**: Paired snip1Rect shapes (outer fill + inner outline), rotated 90°, arranged in 2×3 grid. (Layout 22)
+
+### Watermark Backgrounds
+
+The "AMBITIOUS SMART REBELS HUMAN CENTERED" text is NOT rendered as text shapes — it's a **PNG background image** applied via `blipFill` on individual slides:
+
+- `image6.png` (100KB) — dark watermark: outlined text on #1D2632 background → used on dark section dividers
+- `image7.png` (123KB) — yellow watermark: outlined text on #FFCD00 background → used on yellow section dividers
+
+### Logo
+
+- **File**: `image2.png` from .potx (yellow hexagon + white "BLINQX" wordmark, transparent bg)
+- **Dark slides**: Logo top-left, large: x=0.15" y=0.48" w=4.3" h=1.32" (title) or x=0.51" y=1.59" w=4.21" h=1.23" (closing)
+- **Light/yellow slides**: Logo top-right, small: x=11.18" y=0.3" w=1.94" h=0.59"
+- **Asset**: Also available as `assets/blinqx-logo.svg` for other formats
 
 ### Typography in Presentations
-- Font: Inter (confirmed by template)
-- Title slides: 44-52pt, Regular or Medium weight (NOT bold)
-- Content headings: 28-36pt, Regular
+
+- **Font**: Metropolis Semibold & Metropolis Thin (confirmed by template XML guide text). Fallback: Calibri or Inter if Metropolis unavailable.
+- Title slides: 60pt, Metropolis Thin or Regular
+- Content headings: 36-45pt, Metropolis Semibold
 - Body text: 14-16pt, Regular
-- Category tags: 12-14pt, Medium, inside colored rectangle
-- Page numbers: bottom-right, small (10pt)
+- Category tags: 12-14pt, inside snip1Rect shape
+- Page numbers: bottom-right x=12.54" y=6.95", 16pt
+
+### Chart/Data Slides
+
+- Charts use a teal/green gradient palette: #CDF0EA, #6DA6B9, #04B698, #005C3E
+- NOT the blue primary palette — charts are distinctively green-family
+- Bar/column charts: horizontal preferred for comparison
 
 ### Design Principles for Presentations
+
 1. **Alternate themes** — don't use the same background for consecutive slides
 2. **Yellow = emphasis** — use yellow bg or elements to highlight the most important slides
 3. **Hexagons everywhere** — use the hexagon shape as icon container, decorative element, or visual motif
-4. **Large typography** — titles are oversized (44pt+) for impact
+4. **Large typography** — titles are oversized (60pt) for impact
 5. **Minimal text per slide** — body text is secondary, visuals and headings carry the message
-6. **Diagonal accents** — subtle diagonal line patterns and angled geometric shapes add texture
+6. **Photo placeholders = crosshatch hexagons** — diagonal-line patterns in the template are photo slots
 7. **Green for data** — charts use teal/green palette, NOT the primary blue
+
+## A5. Presentation Template: Layout Catalog & Build Approach
+
+> **Always build from the .potx template** using python-pptx. Never recreate slides with pptxgenjs.
+
+### Build Approach (python-pptx)
+
+```python
+from pptx import Presentation
+
+# 1. Convert .potx → .pptx (fix content type in [Content_Types].xml)
+# 2. Load the converted file
+prs = Presentation('template-base-fixed.pptx')
+
+# 3a. REUSE existing slides: fill placeholders by idx
+slide = prs.slides[0]  # Access existing template slide
+for ph in slide.placeholders:
+    if ph.placeholder_format.idx == 0:  # Title
+        ph.text_frame.paragraphs[0].runs[0].text = "Your Title"
+
+# 3b. CREATE new slides from layout
+layout = prs.slide_layouts[3]  # "Title Slide Dark - 2"
+new_slide = prs.slides.add_slide(layout)
+new_slide.placeholders[0].text = "New Title"
+
+# 4. Delete unwanted slides (reverse order, via XML manipulation)
+# 5. Save
+prs.save('output.pptx')
+```
+
+### Layout Index Catalog (87 layouts, grouped by purpose)
+
+**Title Slides** — for opening/cover:
+
+| Layout # | Name | Theme | Placeholders |
+|----------|------|-------|-------------|
+| 0 | Title Slide Yellow - 1 | Yellow | PICTURE(15), TITLE(0), BODY(20) |
+| 1 | Title Slide Dark - 1 | Dark | PICTURE(14), TITLE(0), BODY(20) |
+| 2 | Title Slide Yellow - 2 | Yellow | PICTURE(15), TITLE(0), BODY(20), SLIDE_NUM |
+| 3 | Title Slide Dark - 2 | Dark | PICTURE(16), TITLE(0), BODY(20) |
+| 4 | Title Slide Yellow - 3 | Yellow | PICTURE(14), TITLE(0), BODY(20) |
+| 5 | Title Slide Dark - 3 | Dark | PICTURE(14), TITLE(0), BODY(20), FOOTER |
+
+**Section Dividers / Quote Slides** — for transitions:
+
+| Layout # | Name | Theme | Placeholders |
+|----------|------|-------|-------------|
+| 6 | Quote Slide Dark | Dark | TITLE(0) |
+| 7 | Quote Slide Yellow | Yellow | TITLE(0) |
+| 8 | Quote Slide + Media | Mixed | PICTURE(14), CENTER_TITLE(0) |
+
+**Content Text-Only** — for text-heavy slides:
+
+| Layout # | Name | Theme | Key Placeholders |
+|----------|------|-------|-----------------|
+| 9 | Content Text Only 1 - Dark | Dark | TITLE(0), BODY(21) |
+| 10 | Content Text Only 1 - White | White | TITLE(0), BODY(21) |
+| 11 | Content Text Only 1 - Yellow | Yellow | TITLE(0), BODY(21) |
+| 12-14 | Content Text Only 2 - Blue/Green/Yellow | Various | TITLE(0), 4-5× BODY |
+| 15-18 | Content Text Only 3 - White/Blue/Green/Yellow | Various | TITLE(0), 3× BODY |
+| 19-21 | Content Text Only 4 - Dark/White/Yellow | Various | TITLE(0), BODY(10) |
+| 34 | Content Text Only 5 - Dark | Dark | TITLE(0), 3× BODY — **hexagon icon grid** |
+| 35 | Content Text Only 5 - White | White | TITLE(0), 3× BODY — **hexagon icon grid** |
+| 36-41 | Content Text Only 6 variants | Various | TITLE(0), 2× BODY |
+
+**Data / KPI Slides**:
+
+| Layout # | Name | Theme | Key Placeholders |
+|----------|------|-------|-----------------|
+| 22 | Content Data 1 - White | White | TITLE(0), 12× BODY — **2×3 KPI grid** |
+| 23-24 | Content Data variants | White | Various data layouts |
+| 30-33 | Content Data 3/4 | White | Simplified data layouts |
+
+**Content + Media** — text with photo placeholders:
+
+| Layout # | Name | Theme | Key Placeholders |
+|----------|------|-------|-----------------|
+| 42 | Text + Media 1 - White | White | PICTURE(16), TITLE(0), 2× BODY |
+| 43 | Text + Media 2 - White | White | 3× PICTURE, TITLE(0), BODY |
+| 44-45 | Text + Media 3 | White/Yellow | PICTURE(10), TITLE(0), 2-3× BODY |
+| 58-61 | Text + Media 4 variants | White/Yellow | Multiple photos, TITLE, BODY |
+| 64-65 | Text + Media 6 | White/Yellow | TITLE(0), 4× PICTURE — **multi-photo layout** |
+| 66-68 | Text + Media 7-9 | White | Various text+photo combos |
+
+**Timeline Slides**:
+
+| Layout # | Name | Theme | Key Placeholders |
+|----------|------|-------|-----------------|
+| 46-47 | Timeline + Media 1 - White | White | TITLE(0), PICTURES, milestone text |
+| 48-51 | Timeline + Media 2 - White | White | Multiple photos + milestones |
+| 52-54 | Timeline + Media 2 - Yellow | Yellow | Milestone text, descriptions |
+| 55-56 | Timeline Text 1 - White | White | Text-only timeline, many BODY |
+
+**Mockup Slides** — device screenshots:
+
+| Layout # | Name | Theme | Key Placeholders |
+|----------|------|-------|-----------------|
+| 69-70 | Mockup - Combi | White | 2× PICTURE, TITLE, BODY |
+| 71 | Mockup - Laptop | White | PICTURE(10), TITLE(0), BODY(20) |
+| 72 | Mockup - Combi 3 | White | 2× PICTURE, TITLE, BODY |
+| 73 | Mockup - Tablet | White | PICTURE(10), TITLE, BODY |
+| 74 | Mockup - Laptop 2 | White | PICTURE(10), TITLE, 2× BODY |
+| 75 | Mockup - Mobile | White | PICTURE(11), TITLE, 2× BODY |
+| 76 | Mockup - Tablet 2 | White | PICTURE(11), TITLE, 2× BODY |
+| 77 | Mockup - Desktop | White | PICTURE(10), TITLE, 2× BODY |
+| 78-81 | Mockup variants | White | Various device combos |
+
+**Utility Slides**:
+
+| Layout # | Name | Theme | Placeholders |
+|----------|------|-------|-------------|
+| 82 | Blanco + Header (alt) | — | TITLE(0) |
+| 83 | Blanco + Header | — | TITLE(0), BODY(10) |
+| 84 | Blanco Slide | — | (none) |
+| 85 | End Slide - Yellow | Yellow | TITLE(0) |
+| 86 | End Slide - Dark | Dark | TITLE(0) |
+
+### Recommended Pitch Deck Selection
+
+For a standard 10-slide pitch, use these template slides (0-indexed from the 41 example slides):
+
+| # | Template slide | Layout | Purpose |
+|---|---------------|--------|---------|
+| 1 | S1 (idx 0) | Title Slide Dark - 2 | Opening / cover |
+| 2 | S3 (idx 2) | Quote Slide Dark | Section divider |
+| 3 | S5 (idx 4) | Content Text Only 1 - White | Body content |
+| 4 | S9 (idx 8) | Content Data 1 - White | KPI / metrics |
+| 5 | S16 (idx 15) | Content Text Only 5 - Dark | Icon grid (hexagons) |
+| 6 | S8 (idx 7) | Content Text Only 4 - Yellow | Data/chart context |
+| 7 | S26 (idx 25) | Timeline + Media 2 - Yellow | Roadmap |
+| 8 | S21 (idx 20) | Content Text + Media 6 - White | Team / photos |
+| 9 | S31 (idx 30) | Mockup - Laptop | Product demo |
+| 10 | S41 (idx 40) | End Slide - Dark | Closing |
 
 | File | When to load |
 |------|-------------|
