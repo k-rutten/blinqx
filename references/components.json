@@ -26,7 +26,7 @@
         "Map header → section header with bg #E2EDF1",
         "Map chip styles → status badges/tags in tables",
         "Map messageBar colors → callout boxes",
-        "Use python-pptx with .potx template for presentations (see SKILL.md A5)"
+        "Use python-pptx with .potx template for presentations (see references/pptx-guide.md)"
       ]
     }
   },
