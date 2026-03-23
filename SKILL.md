@@ -89,7 +89,8 @@ Warning:     #FFA652  (orange)   — attention needed
 ### Typography (grab & go)
 ```
 Font:   'Metropolis UI', 'Inter', Arial, sans-serif
-        (use Inter for pptx/pdf where Metropolis unavailable)
+        pptx: Metropolis (embedded in .potx template)
+        pdf/docx/xlsx: Inter (Metropolis not embeddable)
 
 H1:     45px / 52px / Medium 500   — page titles
 H2:     28px / 36px / SemiBold 600 — section headings
@@ -247,7 +248,7 @@ The "AMBITIOUS SMART REBELS HUMAN CENTERED" text is NOT rendered as text shapes 
 
 ## A5. Presentation Template: Layout Catalog & Build Approach
 
-> **Always build from the .potx template** using python-pptx. Never recreate slides with pptxgenjs.
+> **Always build from the .potx template** using python-pptx. Never recreate slides from scratch.
 
 ### Build Approach (python-pptx)
 

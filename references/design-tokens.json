@@ -511,57 +511,68 @@
     "$description": "Format-specific token overrides. Read this FIRST to know which tokens apply to your output type.",
 
     "documents": {
-      "$description": "Use for pptx, pdf, docx, xlsx. Overrides font to Inter, uses simplified color palette.",
+      "$description": "Use for pptx, pdf, docx, xlsx. Presentations use Metropolis (from .potx template); pdf/docx/xlsx use Inter.",
       "$appliesTo": ["pptx", "pdf", "docx", "xlsx", "python-pptx", "reportlab", "python-docx"],
       "typography": {
-        "fontFamily": "Inter",
-        "fallback": "Arial, Helvetica, sans-serif",
-        "whyInter": "Metropolis UI is the brand font but is not available in Office/PDF environments. Inter is the designated fallback.",
-        "styles": {
-          "slideTitle":     { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "28-36pt" },
-          "sectionHeading": { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "20-24pt" },
-          "bodyText":       { "font": "Inter", "weight": 500, "weightName": "Medium",   "sizeRange": "12-16pt" },
-          "caption":        { "font": "Inter", "weight": 400, "weightName": "Regular",  "sizeRange": "10-12pt" },
-          "tableHeader":    { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "11-14pt" },
-          "tableCell":      { "font": "Inter", "weight": 400, "weightName": "Regular",  "sizeRange": "10-12pt" }
+        "$note": "Presentations (.pptx): Metropolis is embedded in the .potx template; python-pptx preserves it. For pdf/docx/xlsx: use Inter (Metropolis not embeddable).",
+        "presentation": {
+          "fontFamily": "Metropolis",
+          "fallback": "Calibri, Inter, Arial, sans-serif",
+          "styles": {
+            "slideTitle":     { "font": "Metropolis", "weight": 100, "weightName": "Thin/Regular", "size": "60pt" },
+            "slideHeading":   { "font": "Metropolis", "weight": 600, "weightName": "SemiBold", "sizeRange": "36-45pt" },
+            "slideBody":      { "font": "Metropolis", "weight": 400, "weightName": "Regular",  "sizeRange": "14-16pt" },
+            "slideTag":       { "font": "Metropolis", "weight": 600, "weightName": "SemiBold", "sizeRange": "12-14pt", "$note": "Inside snip1Rect label shapes" }
+          }
+        },
+        "document": {
+          "fontFamily": "Inter",
+          "fallback": "Arial, Helvetica, sans-serif",
+          "styles": {
+            "heading":      { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "20-24pt" },
+            "bodyText":     { "font": "Inter", "weight": 500, "weightName": "Medium",   "sizeRange": "12-16pt" },
+            "caption":      { "font": "Inter", "weight": 400, "weightName": "Regular",  "sizeRange": "10-12pt" },
+            "tableHeader":  { "font": "Inter", "weight": 600, "weightName": "SemiBold", "sizeRange": "11-14pt" },
+            "tableCell":    { "font": "Inter", "weight": 400, "weightName": "Regular",  "sizeRange": "10-12pt" }
+          }
         }
       },
       "colors": {
-        "$description": "Simplified role-based palette for documents. 'pptxgenjs' key = hex without # prefix (legacy, still useful for raw hex).",
-        "headingText":  { "hex": "#1D2632", "pptxgenjs": "1D2632", "role": "All headings and body text" },
-        "bodyText":     { "hex": "#1D2632", "pptxgenjs": "1D2632", "role": "Paragraphs, bullet points" },
-        "secondaryText":{ "hex": "#4A515B", "pptxgenjs": "4A515B", "role": "Captions, footnotes, metadata" },
-        "accent":       { "hex": "#6DA6B9", "pptxgenjs": "6DA6B9", "role": "Borders, icons, highlights, chart elements" },
-        "ctaHighlight": { "hex": "#FFCD00", "pptxgenjs": "FFCD00", "role": "Key callouts — max 1 per slide/page" },
-        "tableHeaderBg":{ "hex": "#E2EDF1", "pptxgenjs": "E2EDF1", "role": "Table header rows" },
-        "tableAltRow":  { "hex": "#F4F7F9", "pptxgenjs": "F4F7F9", "role": "Alternating table rows" },
-        "divider":      { "hex": "#C5DBE3", "pptxgenjs": "C5DBE3", "role": "Horizontal rules, table borders" },
-        "background":   { "hex": "#F4F7F9", "pptxgenjs": "F4F7F9", "role": "Page/slide background" },
-        "cardBox":      { "hex": "#FFFFFF", "pptxgenjs": "FFFFFF", "role": "Content boxes on colored bg" },
-        "success":      { "hex": "#04B698", "pptxgenjs": "04B698", "role": "Positive indicators" },
-        "warning":      { "hex": "#FFA652", "pptxgenjs": "FFA652", "role": "Attention indicators" },
-        "error":        { "hex": "#D15858", "pptxgenjs": "D15858", "role": "Negative indicators" }
+        "$description": "Simplified role-based palette for documents. 'noHash' key = hex without # prefix, useful for any tool needing raw hex values.",
+        "headingText":  { "hex": "#1D2632", "noHash": "1D2632", "role": "All headings and body text" },
+        "bodyText":     { "hex": "#1D2632", "noHash": "1D2632", "role": "Paragraphs, bullet points" },
+        "secondaryText":{ "hex": "#4A515B", "noHash": "4A515B", "role": "Captions, footnotes, metadata" },
+        "accent":       { "hex": "#6DA6B9", "noHash": "6DA6B9", "role": "Borders, icons, highlights, chart elements" },
+        "ctaHighlight": { "hex": "#FFCD00", "noHash": "FFCD00", "role": "Key callouts — max 1 per slide/page" },
+        "tableHeaderBg":{ "hex": "#E2EDF1", "noHash": "E2EDF1", "role": "Table header rows" },
+        "tableAltRow":  { "hex": "#F4F7F9", "noHash": "F4F7F9", "role": "Alternating table rows" },
+        "divider":      { "hex": "#C5DBE3", "noHash": "C5DBE3", "role": "Horizontal rules, table borders" },
+        "background":   { "hex": "#F4F7F9", "noHash": "F4F7F9", "role": "Page/slide background" },
+        "cardBox":      { "hex": "#FFFFFF", "noHash": "FFFFFF", "role": "Content boxes on colored bg" },
+        "success":      { "hex": "#04B698", "noHash": "04B698", "role": "Positive indicators" },
+        "warning":      { "hex": "#FFA652", "noHash": "FFA652", "role": "Attention indicators" },
+        "error":        { "hex": "#D15858", "noHash": "D15858", "role": "Negative indicators" }
       },
-      "pptxgenjs": {
-        "$description": "Copy-paste hex constants (without # prefix). Legacy naming; values still useful for any tool needing raw hex.",
+      "noHash": {
+        "$description": "Copy-paste hex constants without # prefix. Useful for any tool needing raw hex values.",
         "colors": {
           "primary": "6DA6B9", "cta": "FFCD00", "success": "04B698", "warning": "FFA652",
           "danger": "D15858", "dark": "1D2632", "help": "4A515B", "placeholder": "777D84",
           "pageBg": "F4F7F9", "headerBg": "E2EDF1", "cardBg": "FFFFFF", "border": "C5DBE3"
         },
-        "font": { "heading": "Inter", "body": "Inter" }
+        "font": { "heading": "Inter", "body": "Inter", "$note": "For pdf/docx/xlsx. Presentations use Metropolis (embedded in .potx template)" }
       },
       "chartColors": {
         "$description": "Ordered palette for charts. Template uses a teal/green gradient for multi-series data visualization.",
         "series": [
-          { "hex": "#CDF0EA", "pptxgenjs": "CDF0EA", "label": "Series 1 — Light green" },
-          { "hex": "#6DA6B9", "pptxgenjs": "6DA6B9", "label": "Series 2 — Teal blue" },
-          { "hex": "#04B698", "pptxgenjs": "04B698", "label": "Series 3 — Green" },
-          { "hex": "#005C3E", "pptxgenjs": "005C3E", "label": "Series 4 — Dark green" },
-          { "hex": "#FFCD00", "pptxgenjs": "FFCD00", "label": "Series 5 — Yellow accent" },
-          { "hex": "#D15858", "pptxgenjs": "D15858", "label": "Series 6 — Red (contrast)" },
-          { "hex": "#316A7D", "pptxgenjs": "316A7D", "label": "Series 7 — Dark teal" },
-          { "hex": "#FFA652", "pptxgenjs": "FFA652", "label": "Series 8 — Orange" }
+          { "hex": "#CDF0EA", "noHash": "CDF0EA", "label": "Series 1 — Light green" },
+          { "hex": "#6DA6B9", "noHash": "6DA6B9", "label": "Series 2 — Teal blue" },
+          { "hex": "#04B698", "noHash": "04B698", "label": "Series 3 — Green" },
+          { "hex": "#005C3E", "noHash": "005C3E", "label": "Series 4 — Dark green" },
+          { "hex": "#FFCD00", "noHash": "FFCD00", "label": "Series 5 — Yellow accent" },
+          { "hex": "#D15858", "noHash": "D15858", "label": "Series 6 — Red (contrast)" },
+          { "hex": "#316A7D", "noHash": "316A7D", "label": "Series 7 — Dark teal" },
+          { "hex": "#FFA652", "noHash": "FFA652", "label": "Series 8 — Orange" }
         ],
         "rules": [
           "Default charts use teal/green gradient (series 1-4) — confirmed from official .potx template",
@@ -572,11 +583,11 @@
       },
       "tableStyle": {
         "$description": "Table formatting for documents.",
-        "headerBg": { "hex": "#E2EDF1", "pptxgenjs": "E2EDF1" },
-        "headerText": { "hex": "#1D2632", "pptxgenjs": "1D2632", "weight": 600 },
-        "altRowBg": { "hex": "#F4F7F9", "pptxgenjs": "F4F7F9" },
-        "cellText": { "hex": "#1D2632", "pptxgenjs": "1D2632", "weight": 400 },
-        "borderColor": { "hex": "#C5DBE3", "pptxgenjs": "C5DBE3" },
+        "headerBg": { "hex": "#E2EDF1", "noHash": "E2EDF1" },
+        "headerText": { "hex": "#1D2632", "noHash": "1D2632", "weight": 600 },
+        "altRowBg": { "hex": "#F4F7F9", "noHash": "F4F7F9" },
+        "cellText": { "hex": "#1D2632", "noHash": "1D2632", "weight": 400 },
+        "borderColor": { "hex": "#C5DBE3", "noHash": "C5DBE3" },
         "borderWidth": "0.5pt",
         "cellPadding": { "top": "4pt", "right": "8pt", "bottom": "4pt", "left": "8pt" },
         "headerHeight": "32pt",
