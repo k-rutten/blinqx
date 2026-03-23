@@ -52,6 +52,20 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 - Never use Blis Digital colors (`#007776`, `#00CDB6`)
 - Never use yellow text on white or white text on yellow (1.3:1 contrast = invisible)
 
+**Step 4 — Load reference files as needed:**
+
+| File | When to load |
+|------|-------------|
+| `references/brand-identity.md` | **Read first** — design rationale, do's/don'ts, decision tree |
+| `references/design-tokens.json` | **Always** — tokens, semantic mappings, format routing |
+| `references/components.json` | **Always** — component specs, Figma links, shadcn mapping |
+| `references/component-patterns.md` | Copy-paste TSX examples for all 14 component types |
+| `references/page-templates.md` | Page layout templates with breakpoints |
+| `references/project-setup-guide.md` | Next.js + shadcn project scaffolding |
+| `references/globals-css-template.md` | Complete `app/globals.css` with all CSS variables |
+| `references/shadcn-config-template.md` | `components.json` + PostCSS config |
+| `references/ai-coding-rules.md` | Rule set (~150 rules) for AI code generators |
+
 ---
 
 ## TLDR — Quick Reference
@@ -494,21 +508,6 @@ Form:       [Form card, max-w 640px, centered]
 
 ---
 
-| File | When to load |
-|------|-------------|
-| `references/brand-identity.md` | **Read first** — design rationale, principes, do's/don'ts, scherm-compositie, beslisboom |
-| `references/design-tokens.json` | **Always** — tokens, semantic mappings, format routing, forbidden patterns, shadcn mapping |
-| `references/components.json` | **Always** — component specs, Figma links, shadcn mapping, composition rules, imports |
-| `references/component-patterns.md` | Copy-paste TSX examples for all 14 component types |
-| `references/page-templates.md` | Page layout templates with breakpoints |
-| `references/project-setup-guide.md` | Next.js + shadcn project scaffolding |
-| `references/globals-css-template.md` | Complete `app/globals.css` with all 68 Figma CSS variables |
-| `references/shadcn-config-template.md` | `components.json` + PostCSS config |
-| `references/ai-coding-rules.md` | Comprehensive rule set (~150 rules) for v0, Claude Code, Cursor, and other AI code generators |
-
-
----
-
 # Section D — Assets
 
 | File | Use case |
@@ -521,51 +520,3 @@ Form:       [Form card, max-w 640px, centered]
 Logo rules: min 24×24 (favicon), standard 124×40 (nav). Dark on light bg, white on dark bg. Never stretch. Place in `public/images/`, favicon at `public/icon.svg`.
 
 The **yellow hexagonal chevron** (`#FFCD00`) is the shared Blinqx brand element across all products.
-
----
-
-# Cheat Sheet — 20 Most Used Values
-
-> For quick reference by v0, Claude Code, or any AI code generator. No need to load reference files for these basics.
-
-```
-COLORS
-──────────────────────────────────────────────
-Navy (text/bg):     #1D2632    N100
-Dark surface:       #343C47    N90
-Help text:          #4A515B    N80
-Placeholder:        #777D84    N60
-Primary blue:       #6DA6B9    B100
-Dark blue (headings):#316A7D   B120
-CTA yellow:         #FFCD00    Y100
-Yellow hover:       #FFD631
-Page background:    #F4F7F9    L20
-Card background:    #FFFFFF    W100
-Header background:  #E2EDF1    B20
-Border default:     #C5DBE3    B40
-Error:              #D15858    R100
-Success:            #04B698    G100
-Warning:            #FFA652    O100
-
-TYPOGRAPHY
-──────────────────────────────────────────────
-Font: Inter (Metropolis UI if self-hosted)
-Max weight: SemiBold (600) — NEVER Bold (700)
-H1: 45px, H2: 28px, H3: 22px, Body: 16/14/12px
-
-COMPONENTS
-──────────────────────────────────────────────
-Buttons:  rounded-full (pill 48px) — NEVER square
-Inputs:   bottom-border only, bg #F4F7F9
-Cards:    rounded-xl, shadow-sm, border #C5DBE3
-Tabs:     border-b-2 #6DA6B9 (active), no bg change
-Switches: ON=#6DA6B9, OFF=border #CAD5E3
-
-RULES
-──────────────────────────────────────────────
-• Text = #1D2632, never #000000
-• Max 1 yellow CTA per view
-• 5 states: enabled/hovered/focused/pressed/disabled
-• Spacing: multiples of 4px only
-• Locale: Dutch (lang="nl")
-```
