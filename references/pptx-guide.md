@@ -4,6 +4,7 @@
 > Parent skill: `SKILL.md` — read that first for universal brand rules.
 > Template file: `assets/Blinqx_Template-Basic.potx` (41 example slides, 87 layouts)
 > This skill OVERRIDES the system pptx skill for visual choices. The system skill handles python-pptx mechanics; this guide handles the Blinqx look.
+> **Auto-discovery**: Check `references/shared/` and the `assets/` folder for any additional reference files not listed here — new resources are added over time.
 
 ---
 

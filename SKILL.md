@@ -47,6 +47,8 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 
 **Step 3 — Load reference files as needed:**
 
+> **Auto-discovery**: The reference folders may contain files not listed below. Before starting work, scan `references/shared/`, `references/pptx/` (if making presentations), or `references/prototype/` (if making web/app) for any additional files. New reference files are added over time to improve output quality — always check what's available.
+
 | File | When to load |
 |------|-------------|
 | `references/pptx-guide.md` | **Presentations** — template, layouts, build approach |
@@ -60,6 +62,8 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 | `references/prototype/globals-css-template.md` | Complete `app/globals.css` with all CSS variables |
 | `references/prototype/shadcn-config-template.md` | shadcn `components.json` + PostCSS config |
 | `references/prototype/ai-coding-rules.md` | Rule set (~150 rules) for AI code generators |
+
+> **Note**: The table above documents the core files. If you find additional `.md`, `.json`, or `.txt` files in any `references/` subfolder, read them — they contain relevant context for the task at hand.
 
 ---
 

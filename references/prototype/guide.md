@@ -4,6 +4,7 @@
 > Parent skill: `SKILL.md` — read that first for universal brand rules.
 > Full token data: `../shared/design-tokens.json` · Full component specs: `components.json`
 > This guide assumes **Next.js + shadcn/ui + Tailwind v4**. For other frameworks, apply the same design tokens and component specs but adapt the tooling.
+> **Auto-discovery**: Check this folder and `../shared/` for any additional reference files not listed here — new resources are added over time.
 
 ---
 
