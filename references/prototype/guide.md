@@ -2,7 +2,7 @@
 
 > **Read this file when generating React, HTML, CSS, or Tailwind code for Blinqx.**
 > Parent skill: `SKILL.md` — read that first for colors, typography basics, and routing.
-> Full token data: `../design-tokens.json` · Full component specs: `../components.json`
+> Full token data: `../shared/design-tokens.json` · Full component specs: `components.json`
 
 ---
 
@@ -33,7 +33,7 @@ shadcn config: `shadcn-config-template.md`
 
 ## Color System
 
-Full palette (8 families, 96 hex values) and 68 CSS custom properties (46 surface, 14 text, 7 border, 1 background): `../design-tokens.json`
+Full palette (8 families, 96 hex values) and 68 CSS custom properties (46 surface, 14 text, 7 border, 1 background): `../shared/design-tokens.json`
 
 **Key semantic tokens (Figma-confirmed CSS variable names):**
 ```
@@ -56,13 +56,13 @@ Success:  bg var(--surface/surface-green-light, #CDF0EA)   text var(--text/text-
 Error:    bg var(--surface/surface-red-light, #F6DEDE)     text var(--text/text-red-dark, #951C1C)
 ```
 
-Color do's/don'ts, contrast ratios, forbidden combinations: → `../brand-identity.md` §4
+Color do's/don'ts, contrast ratios, forbidden combinations: → `../shared/brand-identity.md` §4
 
 ---
 
 ## Component Quick Reference
 
-> Full specs + Figma links: `../components.json`
+> Full specs + Figma links: `components.json` (Blinqx UI Kit — Style Guide)
 > Copy-paste TSX examples for all components: `component-patterns.md`
 
 ### Buttons ([Figma](https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=4426-745&m=dev))

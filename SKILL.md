@@ -14,7 +14,7 @@ description: >
 # Blinqx Design System
 
 > **Figma**: [Style Guide](https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q) · [WorQX reference](https://www.figma.com/design/fJfu8EJysRTl8XFsNyXUF3)
-> **Machine-readable**: `references/design-tokens.json` · `references/components.json`
+> **Machine-readable**: `references/shared/design-tokens.json` · `references/prototype/components.json`
 
 ---
 
@@ -24,7 +24,7 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 
 **When in doubt:** Would a mortgage advisor show this to a client? Would a first-time homebuyer feel comfortable? Is there one clear CTA per view?
 
-**Full design rationale, do's/don'ts, color/font rules, component principles, and decision tree for new elements:** → `references/brand-identity.md`
+**Full design rationale, do's/don'ts, color/font rules, component principles, and decision tree for new elements:** → `references/shared/brand-identity.md`
 
 ---
 
@@ -58,9 +58,9 @@ Blinqx is financial software for mortgage advisors and homebuyers (NL). The desi
 |------|-------------|
 | `references/pptx-guide.md` | **Presentations** — template layouts, build approach, design language |
 | `references/prototype/guide.md` | **Web/app** — tech stack, components, layout patterns |
-| `references/brand-identity.md` | **Read first** — design rationale, do's/don'ts, decision tree |
-| `references/design-tokens.json` | **Always** — tokens, semantic mappings, format routing |
-| `references/components.json` | **Always** — component specs, Figma links, shadcn mapping |
+| `references/shared/brand-identity.md` | **Read first** — design rationale, do's/don'ts, decision tree |
+| `references/shared/design-tokens.json` | **Always** — tokens, semantic mappings, format routing |
+| `references/prototype/components.json` | **Prototypes** — Blinqx UI Kit specs, Figma links, shadcn mapping |
 | `references/prototype/component-patterns.md` | Copy-paste TSX examples for all 14 component types |
 | `references/prototype/page-templates.md` | Page layout templates with breakpoints |
 | `references/prototype/project-setup-guide.md` | Next.js + shadcn project scaffolding |
@@ -109,8 +109,8 @@ Radius:      16px cards/headers, 8px message bars, 4px tooltips, 48px buttons (p
 Shadows:     card (resting), hovered (interactive), popup (overlay)
 ```
 
-Full token data: `references/design-tokens.json`
-Full component specs: `references/components.json`
+Full token data: `references/shared/design-tokens.json`
+Full component specs: `references/prototype/components.json`
 
 ---
 

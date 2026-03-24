@@ -1,10 +1,11 @@
 {
-  "$description": "Blinqx component specifications with semantic metadata. Each component maps directly to a Figma section in the Style Guide.",
+  "$description": "Blinqx UI Kit — component specifications from the Blinqx Style Guide (Figma). Each component maps directly to a Figma section. Use for web/app prototypes; for document outputs (pptx, pdf, docx), only the visual patterns in $formatGuide.documents apply.",
   "$meta": {
+    "source": "Blinqx Style Guide (Figma)",
     "figmaFile": "F5hNn1cAwIeKGJgEFJV64q",
     "figmaBaseUrl": "https://www.figma.com/design/F5hNn1cAwIeKGJgEFJV64q/?node-id=",
     "generatedAt": "2026-03-18",
-    "version": "2.1.0"
+    "version": "2.2.0"
   },
 
   "$formatGuide": {

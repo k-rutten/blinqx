@@ -694,7 +694,7 @@
         "tailwindSyntax": "bg-[var(--surface/surface-blue-default,#6da6b9)]"
       },
       "components": {
-        "$note": "Load references/components.json for full component specs with Tailwind code examples."
+        "$note": "Load references/prototype/components.json for full Blinqx UI Kit specs with Tailwind code examples."
       },
       "rules": [
         "Use Metropolis UI as primary font, Inter as fallback",
