@@ -1,8 +1,20 @@
 # Blinqx Prototype Guide (React / Web / App)
 
 > **Read this file when generating React, HTML, CSS, or Tailwind code for Blinqx.**
-> Parent skill: `SKILL.md` — read that first for colors, typography basics, and routing.
+> Parent skill: `SKILL.md` — read that first for universal brand rules.
 > Full token data: `../shared/design-tokens.json` · Full component specs: `components.json`
+> This guide assumes **Next.js + shadcn/ui + Tailwind v4**. For other frameworks, apply the same design tokens and component specs but adapt the tooling.
+
+---
+
+## Prototype-Specific Rules
+
+These rules apply to web/app prototypes only (not documents or presentations):
+1. Buttons are **pill-shaped** (border-radius: 48px) — never square
+2. Inputs have **bottom-border only** — never fully bordered boxes
+3. Every interactive element needs **5 states**: enabled, hovered, focused, pressed, disabled
+4. Font stack: `'Metropolis UI', 'Inter', Arial, sans-serif` via CSS `--font-sans`
+5. Locale: Dutch (`lang="nl"`)
 
 ---
 

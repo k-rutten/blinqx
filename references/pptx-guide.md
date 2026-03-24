@@ -1,14 +1,15 @@
 # Blinqx Presentation Guide (pptx)
 
 > **Read this file when creating or editing PowerPoint presentations.**
-> Parent skill: `SKILL.md` — read that first for colors, typography basics, and routing.
-> Template file: `Blinqx_Template-Basic.potx` (41 example slides, 87 layouts)
+> Parent skill: `SKILL.md` — read that first for universal brand rules.
+> Template file: `assets/Blinqx_Template-Basic.potx` (41 example slides, 87 layouts)
+> This skill OVERRIDES the system pptx skill for visual choices. The system skill handles python-pptx mechanics; this guide handles the Blinqx look.
 
 ---
 
 ## Presentation Design Language (from official Blinqx_Template-Basic.potx)
 
-> **CRITICAL**: Always build presentations FROM the .potx template, never recreate slides from scratch.
+> **CRITICAL**: Always build presentations FROM the .potx template (`assets/Blinqx_Template-Basic.potx`), never recreate slides from scratch.
 > Use python-pptx to load it, select slides, and fill placeholders.
 
 ### Theme Color Scheme (from theme1.xml)
